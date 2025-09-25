@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игровой клуб КОЛИЗЕЙ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+            background-image: url('https://i.ibb.co/VctPH2CQ/background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+        }
+
+        header {
+            background: transparent;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 0 2rem;
+        }
+
+        .logo-text {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 
+                0 0 20px #ffd700,
+                0 0 40px #ffd700,
+                0 0 60px #ff6b00,
+                0 0 80px #ff6b00;
+            letter-spacing: 6px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .logo-subtitle {
+            font-size: 1.6rem;
+            color: #d4b483;
+            font-style: italic;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px rgba(212, 180, 131, 0.8);
+        }
+
+        nav {
+            background: rgba(40, 40, 40, 0.95);
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ffd700;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid transparent;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        nav a:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: linear-gradient(135deg, 
+                rgba(30, 25, 20, 0.95) 0%, 
+                rgba(50, 40, 30, 0.95) 50%, 
+                rgba(30, 25, 20, 0.95) 100%);
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 15px;
+            border: 3px solid #8B4513;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.6),
+                inset 0 0 0 1px rgba(255, 215, 0, 0.2),
+                0 0 30px rgba(139, 69, 19, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, 
+                    transparent 0%, 
+                    rgba(139, 69, 19, 0.1) 50%, 
+                    transparent 100%);
+            pointer-events: none;
+        }
+
+        h2 {
+            color: #ffd700;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+            font-family: 'Georgia', serif;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #2a1f0e;
+            padding: 1.3rem 2.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 
+                0 5px 20px rgba(255, 215, 0, 0.5),
+                0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 10px 30px rgba(255, 215, 0, 0.7),
+                0 0 0 2px rgba(255, 215, 0, 0.5);
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .social-telegram {
+            color: #0088cc;
+            border-color: #0088cc;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+        }
+
+        .social-vk {
+            color: #45688e;
+            border-color: #45688e;
+            box-shadow: 0 4px 15px rgba(69, 104, 142, 0.3);
+        }
+
+        .social-map {
+            color: #ff6b00;
+            border-color: #ff6b00;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        .social-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background: linear-gradient(135deg, #2a1f0e, #3a2a14);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 3px solid #8B4513;
+            transition: all 0.3s;
+            text-align: center;
+            padding: 1rem;
+            font-family: 'Georgia', serif;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, 
+                    transparent 0%, 
+                    rgba(139, 69, 19, 0.2) 50%, 
+                    transparent 100%);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 15px 35px rgba(255, 215, 0, 0.3),
+                inset 0 0 30px rgba(255, 215, 0, 0.1);
+            border-color: #ffd700;
+        }
+
+        .ps5-games-popup {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
+            background: linear-gradient(135deg, #2a1f0e, #3a2a14);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 2rem;
+            z-index: 1000;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        .gallery-item:hover .ps5-games-popup {
+            display: block;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .game-item {
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid #d4b483;
+            transition: transform 0.3s;
+        }
+
+        .game-item:hover {
+            transform: scale(1.05);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .game-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffd700, #ff6b00);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .game-name {
+            font-size: 0.8rem;
+            color: #ffd700;
+            line-height: 1.2;
+        }
+
+        .contact-info {
+            font-size: 1.3rem;
+            line-height: 2;
+            text-align: center;
+        }
+
+        .phone {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+            display: block;
+            margin: 1.5rem 0;
+            text-decoration: none;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .address {
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 1.5rem 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .booking-notice {
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.15) 0%, 
+                rgba(212, 180, 131, 0.2) 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #d4b483;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: linear-gradient(135deg, 
+                rgba(74, 55, 28, 0.95) 0%, 
+                rgba(42, 31, 14, 0.95) 100%);
+            color: #ffd700;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 3px solid #ffd700;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #d4b483;
+            text-decoration: none;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .footer-link:hover {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, 
+                rgba(30, 25, 20, 0.98) 0%, 
+                rgba(50, 40, 30, 0.98) 100%);
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid #8B4513;
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                inset 0 0 0 1px rgba(255, 215, 0, 0.2);
+        }
+
+        .close {
+            position: fixed;
+            right: 2rem;
+            top: 2rem;
+            color: #ffd700;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 1001;
+            background: rgba(42, 31, 14, 0.9);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #d4b483;
+        }
+
+        .tariff-background {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border: 3px solid #d4b483;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .tariff-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tariff-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(74, 55, 28, 0.8) 0%, 
+                rgba(42, 31, 14, 0.9) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            font-family: 'Georgia', serif;
+        }
+
+        .tariff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tariff-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #8B4513;
+            transition: transform 0.3s;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .tariff-card h3 {
+            color: #ffd700;
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .price-list {
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+            transition: all 0.3s;
+        }
+
+        .hours {
+            font-weight: bold;
+            color: #ffd700;
+            font-size: 1rem;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .per-hour {
+            color: #d4b483;
+            font-size: 0.8rem;
+        }
+
+        .time-info {
+            text-align: center;
+            color: #d4b483;
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .time-slot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .time-slot.active {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
+        }
+
+        .time {
+            font-weight: bold;
+            color: #ffd700;
+            min-width: 120px;
+            font-size: 1rem;
+        }
+
+        .status {
+            color: #ffffff;
+            flex-grow: 1;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .current {
+            color: #ff6b00;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .time-slot:not(.active):hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .games-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid #8B4513;
+        }
+
+        .category-title {
+            color: #ffd700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-family: 'Georgia', serif;
+        }
+
+        .games-list {
+            list-style: none;
+        }
+
+        .game-list-item {
+            padding: 0.7rem;
+            border-bottom: 1px solid rgba(212, 180, 131, 0.3);
+            color: #fff;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .game-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .game-list-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .ps5-tariff-compact {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #8B4513;
+            margin: 1rem auto;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .ps5-tariff-compact h3 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .modal-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        /* Стили для отзывов */
+        .reviews-section {
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .reviews-stats {
+            text-align: center;
+            margin: 2rem 0;
+            color: #d4b483;
+            font-size: 1.3rem;
+        }
+
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 215, 0, 0.15);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            margin: 1rem 0;
+            border: 2px solid #ffd700;
+        }
+
+        .rating-badge .stars {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .rating-badge .score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .all-reviews-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #2a1f0e;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            border: 2px solid transparent;
+        }
+
+        .all-reviews-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+            border-color: #ffd700;
+        }
+
+        .reviews-note {
+            color: #d4b483;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 3rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-buttons, .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .games-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+            
+            .ps5-games-popup {
+                width: 95%;
+                left: 2.5%;
+                transform: none;
+            }
+            
+            .time-slot {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            .time {
+                min-width: auto;
+            }
+            
+            .tariff-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-title {
+                font-size: 1.8rem;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+            }
+            
+            .ps5-tariff-compact {
+                max-width: 100%;
+                margin: 1rem 0;
+            }
+            
+            .rating-badge {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+            
+            .rating-badge .stars {
+                margin-right: 0;
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <header>
+            <div class="logo-container">
+                <div class="logo-text">КОЛИЗЕЙ</div>
+                <div class="logo-subtitle">Легендарная арена для настоящих геймеров</div>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#" onclick="openModal('dayTariffModal')">Дневные тарифы</a></li>
+                <li><a href="#" onclick="openModal('nightTariffModal')">Ночные тарифы</a></li>
+                <li><a href="#games">Все игры PS5</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#schedule">Расписание</a></li>
+                <li><a href="#social">Связь</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <section id="about" class="section">
+                <h2>Добро пожаловать на арену КОЛИЗЕЙ</h2>
+                <p style="text-align: center; font-size: 1.3rem; line-height: 1.8;">
+                    Где каждый бой - легенда, а каждый геймер - гладиатор цифровой эпохи! 
+                    Величественная атмосфера древнего Колизея встречает современные технологии 
+                    игровых ПК премиум-класса и новейшие PlayStation 5.
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button" onclick="openModal('dayTariffModal')">Дневные тарифы (14:00-02:00)</a>
+                    <a href="#" class="cta-button" onclick="openModal('nightTariffModal')">Ночные тарифы (02:00-14:00)</a>
+                </div>
+
+                <div class="booking-notice">
+                    <h3 style="color: #ffd700; margin-bottom: 1rem;">🎯 Бронирование мест</h3>
+                    <p style="font-size: 1.2rem;">Чтобы гарантировать себе место в час пик, бронируйте через наш Telegram-чат!</p>
+                </div>
+            </section>
+
+            <section id="schedule" class="section">
+                <h2>🕒 Расписание смен</h2>
+                
+                <div style="text-align: center; margin: 2rem 0;">
+                    <div class="schedule-card">
+                        <div class="time-slot active" id="nightShift">
+                            <span class="time">02:00 - 14:00</span>
+                            <span class="status">🌙 Ночная смена</span>
+                            <span class="current">● Сейчас активно</span>
+                        </div>
+                        <div class="time-slot" id="dayShift">
+                            <span class="time">14:00 - 02:00</span>
+                            <span class="status">☀️ Дневная смена</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; color: #d4b483; font-size: 1.1rem;">
+                    <p>💡 <strong>Подсказка:</strong> Тарифы меняются в зависимости от времени суток</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Наша арена</h2>
+                <div class="gallery">
+                    <div class="gallery-item">🏛️ Зона игровых ПК</div>
+                    <div class="gallery-item">💎 Императорская VIP зона</div>
+                    
+                    <div class="gallery-item" style="position: relative;">
+                        🎯 Арена PlayStation 5
+                        <div class="ps5-games-popup">
+                            <h3 style="color: #ffd700; text-align: center; margin-bottom: 1rem;">🎮 Популярные игры для PS5</h3>
+                            <div class="games-grid">
+                                <div class="game-item">
+                                    <div class="game-icon">UFS</div>
+                                    <div class="game-name">UFC 5</div>
+                                </div>
+                                <div class="game-item">
+                                    <div class="game-icon">FIFA</div>
+                                    <div class="game-name">FIFA 25</div>
+                                </div>
+                                <div class="game-item">
+                                    <div class="game-icon">MK1</div>
+                                    <div class="game-name">Mortal Kombat 1</div>
+                                </div>
+                                <div class="game-item">
+                                    <div class="game-icon">NHL</div>
+                                    <div class="game-name">NHL 25</div>
+                                </div>
+                                <div class="game-item">
+                                    <div class="game-icon">GTA</div>
+                                    <div class="game-name">GTA 5</div>
+                                </div>
+                                <div class="game-item">
+                                    <div class="game-icon">GOW</div>
+                                    <div class="game-name">God of War</div>
+                                </div>
+                                <div class="game-item">
+                                    <div class="game-icon">🕷️</div>
+                                    <div class="game-name">Spider-Man</div>
+                                </div>
+                                <div class="game-item">
+                                    <div class="game-icon">W3</div>
+                                    <div class="game-name">Ведьмак 3</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 1rem;">
+                                <a href="#games" style="color: #ffd700; text-decoration: none; font-weight: bold;">
+                                    👇 Смотреть все игры
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="games" class="section">
+                <h2>🎮 Полный список игр для PS5</h2>
+                
+                <div class="games-categories">
+                    <div class="category-card">
+                        <h3 class="category-title">🥊 Файтинги</h3>
+                        <ul class="games-list">
+                            <li class="game-list-item">Mortal Kombat 1</li>
+                            <li class="game-list-item">Mortal Kombat XL</li>
+                            <li class="game-list-item">Mortal Kombat 11</li>
+                            <li class="game-list-item">UFC 5</li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card">
+                        <h3 class="category-title">⚽ Спортивные</h3>
+                        <ul class="games-list">
+                            <li class="game-list-item">FIFA 25</li>
+                            <li class="game-list-item">FIFA 20</li>
+                            <li class="game-list-item">FIFA 17</li>
+                            <li class="game-list-item">NHL 25</li>
+                            <li class="game-list-item">NBA 2K25</li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card">
+                        <h3 class="category-title">🎯 Экшн/Приключения</h3>
+                        <ul class="games-list">
+                            <li class="game-list-item">GTA 5</li>
+                            <li class="game-list-item">Mafia</li>
+                            <li class="game-list-item">Dying Light 2</li>
+                            <li class="game-list-item">God of War</li>
+                            <li class="game-list-item">Spider-Man</li>
+                            <li class="game-list-item">Spider-Man: Miles Morales</li>
+                            <li class="game-list-item">Horizon Zero Dawn</li>
+                            <li class="game-list-item">Ведьмак 3: Дикая Охота</li>
+                            <li class="game-list-item">Watch Dogs 2</li>
+                            <li class="game-list-item">Uncharted 4: Путь вора</li>
+                            <li class="game-list-item">Ratchet & Clank</li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card">
+                        <h3 class="category-title">🏎️ Гонки</h3>
+                        <ul class="games-list">
+                            <li class="game-list-item">Need for Speed Payback</li>
+                            <li class="game-list-item">Gran Turismo Sport</li>
+                            <li class="game-list-item">Driveclub</li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card">
+                        <h3 class="category-title">👻 Хоррор/RPG</h3>
+                        <ul class="games-list">
+                            <li class="game-list-item">Resident Evil 7</li>
+                            <li class="game-list-item">Deus Ex</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reviews" class="section">
+                <h2>💬 Отзывы наших геймеров</h2>
+                
+                <div class="reviews-stats">
+                    <p>Нас рекомендуют на Яндекс Картах</p>
+                    <div class="rating-badge">
+                        <span class="stars">★★★★★</span>
+                        <span class="score">5.0</span>
+                    </div>
+                    <p>На основе оценок реальных посетителей</p>
+                </div>
+
+                <div style="text-align: center; margin: 3rem 0;">
+                    <a href="https://yandex.ru/maps/10665/kolchugino/?ll=39.376976%2C56.297982&mode=poi&poi%5Bpoint%5D=39.376856%2C56.298019&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D178329103177&tab=reviews&z=20" 
+                       class="all-reviews-btn" target="_blank">
+                        📖 Читать все отзывы на Яндекс Картах
+                    </a>
+                    
+                </div>
+
+                <div style="text-align: center; color: #d4b483; font-size: 1.1rem;">
+                    <p>⭐ Все отзывы настоящие - оставлены реальными посетителями нашего клуба</p>
+                </div>
+            </section>
+
+            <section id="social" class="section">
+                <h2>Связь с нами</h2>
+                
+                <div class="social-buttons">
+                    <a href="https://t.me/+IRDifvFhLG85MmYy" class="social-button social-telegram" target="_blank">
+                        <span class="social-icon">📱</span>
+                        <span>Telegram-чат для брони</span>
+                    </a>
+                    
+                    <a href="https://vk.com/kkk3363klg" class="social-button social-vk" target="_blank">
+                        <span class="social-icon">👥</span>
+                        <span>Группа ВКонтакте</span>
+                    </a>
+                    
+                    <a href="https://yandex.ru/maps/org/kolizey/178329103177/?ll=39.376949%2C56.298018&z=17" class="social-button social-map" target="_blank">
+                        <span class="social-icon">📍</span>
+                        <span>Яндекс.Карты</span>
+                    </a>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p style="font-size: 1.2rem; color: #d4b483;">Следите за акциями и мероприятиями в наших соцсетях!</p>
+                </div>
+            </section>
+
+            <section id="contacts" class="section">
+                <h2>Вход на арену</h2>
+                <div class="contact-info">
+                    <div class="address">📍 Владимирская область, г. Кольчугино, ул. Дружбы 7А</div>
+                    <a href="tel:+79995229450" class="phone">📞 8-999-522-94-50</a>
+                    <p>🕒 <strong>Время работы арены:</strong> Круглосуточно</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="https://yandex.ru/maps/org/kolizey/178329103177/?ll=39.376949%2C56.298018&z=17" 
+                           target="_blank" 
+                           style="color: #ffd700; text-decoration: none; font-size: 1.2rem;">
+                            📍 Посмотреть на Яндекс.Картах
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>© 2024 Игровой клуб "КОЛИЗЕЙ". Все права защищены.</p>
+            <div class="footer-links">
+                <a href="https://t.me/+IRDifvFhLG85MmYy" class="footer-link" target="_blank">Telegram</a>
+                <a href="https://vk.com/kkk3363klg" class="footer-link" target="_blank">ВКонтакте</a>
+                <a href="https://yandex.ru/maps/org/kolizey/178329103177/?ll=39.376949%2C56.298018&z=17" class="footer-link" target="_blank">Яндекс.Карты</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Модальные окна тарифов -->
+    <div id="dayTariffModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('dayTariffModal')">&times;</span>
+            <h2 class="modal-title">⚔️ Дневные тарифы<br><span style="font-size: 1.8rem;">(14:00-02:00)</span></h2>
+            
+            <div class="tariff-background">
+                <img src="https://i.ibb.co/r28563MC/day-tariff.jpg" alt="Дневные тарифы">
+                <div class="tariff-overlay">ДНЕВНАЯ СЕССИЯ</div>
+            </div>
+            
+            <div class="time-info">Время: с 14:00 до 02:00</div>
+            
+            <div class="tariff-grid">
+                <div class="tariff-card">
+                    <h3>🎮 Игровые ПК</h3>
+                    <div class="price-list">
+                        <div class="price-item"><span class="hours">1 час</span><span class="price">90₽</span></div>
+                        <div class="price-item"><span class="hours">2 часа</span><span class="price">180₽ <span class="per-hour">(90₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">3 часа</span><span class="price">250₽ <span class="per-hour">(83₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">4 часа</span><span class="price">320₽ <span class="per-hour">(80₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">6 часов</span><span class="price">450₽ <span class="per-hour">(75₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">12 часов</span><span class="price">840₽ <span class="per-hour">(70₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">24 часа</span><span class="price">1500₽ <span class="per-hour">(62₽/ч)</span></span></div>
+                    </div>
+                </div>
+
+                <div class="tariff-card">
+                    <h3>⭐ VIP ПК</h3>
+                    <div class="price-list">
+                        <div class="price-item"><span class="hours">1 час</span><span class="price">130₽</span></div>
+                        <div class="price-item"><span class="hours">2 часа</span><span class="price">260₽ <span class="per-hour">(130₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">3 часа</span><span class="price">360₽ <span class="per-hour">(120₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">4 часа</span><span class="price">460₽ <span class="per-hour">(115₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">5 часов</span><span class="price">530₽ <span class="per-hour">(106₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">6 часов</span><span class="price">600₽ <span class="per-hour">(100₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">12 часов</span><span class="price">1100₽ <span class="per-hour">(91₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">24 часа</span><span class="price">2000₽ <span class="per-hour">(83₽/ч)</span></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ps5-tariff-compact">
+                <h3>🎯 PlayStation 5</h3>
+                <div class="price-list">
+                    <div class="price-item"><span class="hours">1 геймпад</span><span class="price">100₽/час</span></div>
+                    <div class="price-item"><span class="hours">2 геймпада</span><span class="price">200₽/час</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nightTariffModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('nightTariffModal')">&times;</span>
+            <h2 class="modal-title">🌙 Ночные тарифы<br><span style="font-size: 1.8rem;">(02:00-14:00)</span></h2>
+            
+            <div class="tariff-background">
+                <img src="https://i.ibb.co/d0FvyxJ4/night-tariff.jpg" alt="Ночные тарифы">
+                <div class="tariff-overlay">НОЧНАЯ СЕССИЯ</div>
+            </div>
+            
+            <div class="time-info">Время: с 02:00 до 14:00</div>
+            
+            <div class="tariff-grid">
+                <div class="tariff-card">
+                    <h3>🎮 Игровые ПК (ночь)</h3>
+                    <div class="price-list">
+                        <div class="price-item"><span class="hours">1 час</span><span class="price">140₽</span></div>
+                        <div class="price-item"><span class="hours">2 часа</span><span class="price">280₽ <span class="per-hour">(140₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">3 часа</span><span class="price">380₽ <span class="per-hour">(127₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">4 часа</span><span class="price">480₽ <span class="per-hour">(120₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">5 часов</span><span class="price">580₽ <span class="per-hour">(116₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">6 часов</span><span class="price">680₽ <span class="per-hour">(113₽/ч)</span></span></div>
+                    </div>
+                </div>
+
+                <div class="tariff-card">
+                    <h3>⭐ VIP ПК (ночь)</h3>
+                    <div class="price-list">
+                        <div class="price-item"><span class="hours">1 час</span><span class="price">200₽</span></div>
+                        <div class="price-item"><span class="hours">2 часа</span><span class="price">400₽ <span class="per-hour">(200₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">3 часа</span><span class="price">550₽ <span class="per-hour">(183₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">4 часа</span><span class="price">690₽ <span class="per-hour">(172₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">5 часов</span><span class="price">820₽ <span class="per-hour">(164₽/ч)</span></span></div>
+                        <div class="price-item"><span class="hours">6 часов</span><span class="price">950₽ <span class="per-hour">(158₽/ч)</span></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ps5-tariff-compact">
+                <h3>🎯 PlayStation 5 (ночь)</h3>
+                <div class="price-list">
+                    <div class="price-item"><span class="hours">1 геймпад</span><span class="price">150₽/час</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Закрытие модального окна при клике вне его
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Закрытие модального окна при нажатии Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Функция для обновления текущей смены
+        function updateCurrentShift() {
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            const currentTime = currentHour + currentMinute / 60;
+            
+            // Сбрасываем все смены
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('active');
+                const currentIndicator = slot.querySelector('.current');
+                if (currentIndicator) {
+                    currentIndicator.remove();
+                }
+            });
+            
+            // Определяем активную смену
+            let activeShift;
+            if (currentTime >= 2 && currentTime < 14) {
+                activeShift = document.getElementById('nightShift');
+            } else {
+                activeShift = document.getElementById('dayShift');
+            }
+            
+            // Активируем текущую смену
+            if (activeShift) {
+                activeShift.classList.add('active');
+                const currentIndicator = document.createElement('span');
+                currentIndicator.className = 'current';
+                currentIndicator.textContent = '● Сейчас активно';
+                activeShift.appendChild(currentIndicator);
+            }
+        }
+
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Применяем анимацию к секциям
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCurrentShift();
+            // Обновляем смену каждую минуту
+            setInterval(updateCurrentShift, 60000);
+            
+            console.log('Добро пожаловать в КОЛИЗЕЙ! 🏛️');
+        });
+
+        // Предзагрузка изображений для лучшего UX
+        function preloadImages() {
+            const images = [
+                'https://i.ibb.co/r28563MC/day-tariff.jpg',
+                'https://i.ibb.co/d0FvyxJ4/night-tariff.jpg',
+                'https://i.ibb.co/VctPH2CQ/background.jpg'
+            ];
+            
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+
+        // Запускаем предзагрузку
+        preloadImages();
+    </script>
+</body>
+</html>
