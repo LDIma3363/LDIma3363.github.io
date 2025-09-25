@@ -68,19 +68,54 @@
             text-shadow: 0 0 10px rgba(212, 180, 131, 0.8);
         }
 
-        /* Бургер-меню */
-        .menu-toggle {
+        .mobile-menu {
             display: none;
             background: rgba(40, 40, 40, 0.95);
-            color: #ffd700;
-            border: 2px solid #ffd700;
             padding: 1rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            margin: 1rem auto;
-            border-radius: 10px;
-            width: 90%;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ffd700;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        .menu-item {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 1rem;
             text-align: center;
+            text-decoration: none;
+            color: #ffd700;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .menu-icon {
+            font-size: 1.5rem;
+        }
+
+        .menu-text {
+            font-size: 0.9rem;
+        }
+
+        .desktop-menu {
+            display: block;
         }
 
         nav {
@@ -113,10 +148,6 @@
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
             background: rgba(0, 0, 0, 0.2);
             display: block;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         nav a:hover {
@@ -330,65 +361,31 @@
             border-color: #ffd700;
         }
 
-        .ps5-games-popup {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 800px;
-            background: linear-gradient(135deg, #2a1f0e, #3a2a14);
-            border: 3px solid #8B4513;
+        .booking-notice {
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.15) 0%, 
+                rgba(212, 180, 131, 0.2) 100%);
+            padding: 1.2rem;
             border-radius: 15px;
-            padding: 1.5rem;
-            z-index: 1000;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-        }
-
-        .gallery-item:hover .ps5-games-popup {
-            display: block;
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 0.8rem;
-            margin-top: 1rem;
-        }
-
-        .game-item {
+            border: 2px solid #d4b483;
+            margin: 1.5rem 0;
             text-align: center;
-            padding: 0.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid #d4b483;
-            transition: transform 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
 
-        .game-item:hover {
-            transform: scale(1.05);
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .game-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #ffd700, #ff6b00);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 0.5rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .game-name {
-            font-size: 0.7rem;
-            color: #ffd700;
-            line-height: 1.2;
+        .booking-notice:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.2) 0%, 
+                rgba(212, 180, 131, 0.3) 100%);
+            text-decoration: none;
+            color: inherit;
         }
 
         .contact-info {
@@ -414,18 +411,6 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        .booking-notice {
-            background: linear-gradient(135deg, 
-                rgba(255, 215, 0, 0.15) 0%, 
-                rgba(212, 180, 131, 0.2) 100%);
-            padding: 1.2rem;
-            border-radius: 15px;
-            border: 2px solid #d4b483;
-            margin: 1.5rem 0;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
         footer {
             background: linear-gradient(135deg, 
                 rgba(74, 55, 28, 0.95) 0%, 
@@ -435,28 +420,6 @@
             padding: 2rem 0;
             margin-top: 3rem;
             border-top: 3px solid #ffd700;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: #d4b483;
-            text-decoration: none;
-            transition: color 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .footer-link:hover {
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.2);
         }
 
         .modal {
@@ -558,19 +521,18 @@
             transition: transform 0.3s;
             backdrop-filter: blur(5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
 
         .tariff-card h3 {
             color: #ffd700;
-            text-align: center;
             font-size: 1.2rem;
             margin-bottom: 1rem;
             font-family: 'Georgia', serif;
         }
 
         .price-list {
-            text-align: left;
-            font-size: 0.9rem;
+            text-align: center;
         }
 
         .price-item {
@@ -615,6 +577,7 @@
             padding: 1.2rem;
             max-width: 500px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .time-slot {
@@ -653,69 +616,117 @@
             font-size: 0.7rem;
         }
 
-        .time-slot:not(.active):hover {
-            background: rgba(255, 255, 255, 0.05);
+        .games-showcase {
+            margin: 2rem 0;
         }
 
-        .games-categories {
+        .games-grid-improved {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        .category-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 1.2rem;
-            border: 2px solid #8B4513;
-        }
-
-        .category-title {
-            color: #ffd700;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+        .game-card {
+            background: linear-gradient(135deg, rgba(42, 31, 14, 0.8), rgba(74, 55, 28, 0.8));
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
             text-align: center;
-            font-family: 'Georgia', serif;
+            transition: all 0.4s ease;
+            border: 3px solid #8B4513;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
         }
 
-        .games-list {
-            list-style: none;
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.5s;
         }
 
-        .game-list-item {
-            padding: 0.6rem;
-            border-bottom: 1px solid rgba(212, 180, 131, 0.3);
-            color: #fff;
+        .game-card:hover::before {
+            left: 100%;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: #ffd700;
+            box-shadow: 
+                0 15px 35px rgba(255, 215, 0, 0.3),
+                0 0 30px rgba(255, 107, 0, 0.2);
+        }
+
+        .game-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid #d4b483;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
             transition: all 0.3s;
-            font-size: 0.8rem;
         }
 
-        .game-list-item:last-child {
-            border-bottom: none;
+        .game-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+            background: linear-gradient(45deg, #2a1f0e, #3a2a14);
         }
 
-        .game-list-item:hover {
-            background: rgba(255, 215, 0, 0.1);
-            transform: translateX(5px);
+        .game-card:hover .game-icon img {
+            transform: scale(1.1);
         }
 
-        .ps5-tariff-compact {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 1.2rem;
-            border-radius: 12px;
-            border: 2px solid #8B4513;
-            margin: 1rem auto;
-            max-width: 350px;
-            text-align: center;
+        .game-card:hover .game-icon {
+            border-color: #ffd700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
         }
 
-        .ps5-tariff-compact h3 {
+        .game-title {
             color: #ffd700;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
             font-family: 'Georgia', serif;
+            line-height: 1.3;
         }
+
+        .game-category {
+            color: #d4b483;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            font-style: italic;
+        }
+
+        .game-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .game-card:nth-child(1) { animation-delay: 0.1s; }
+        .game-card:nth-child(2) { animation-delay: 0.2s; }
+        .game-card:nth-child(3) { animation-delay: 0.3s; }
+        .game-card:nth-child(4) { animation-delay: 0.4s; }
+        .game-card:nth-child(5) { animation-delay: 0.5s; }
+        .game-card:nth-child(6) { animation-delay: 0.6s; }
 
         .modal-title {
             font-size: 1.8rem;
@@ -724,71 +735,19 @@
             line-height: 1.2;
         }
 
-        /* Стили для отзывов */
-        .reviews-section {
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .reviews-stats {
-            text-align: center;
-            margin: 1.5rem 0;
-            color: #d4b483;
-            font-size: 1.1rem;
-        }
-
-        .rating-badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(255, 215, 0, 0.15);
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            margin: 1rem 0;
-            border: 2px solid #ffd700;
-        }
-
-        .rating-badge .stars {
-            color: #ffd700;
-            font-size: 1.5rem;
-            margin-right: 0.8rem;
-        }
-
-        .rating-badge .score {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffd700;
-        }
-
-        .all-reviews-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            color: #2a1f0e;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            margin: 1.5rem 0;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-            border: 2px solid transparent;
-        }
-
-        .all-reviews-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
-            border-color: #ffd700;
-        }
-
-        .reviews-note {
-            color: #d4b483;
-            font-size: 1rem;
-            margin-top: 1rem;
-            font-style: italic;
-        }
-
-        /* Мобильные стили */
         @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .logo-text {
                 font-size: 2.5rem;
                 letter-spacing: 3px;
@@ -797,20 +756,6 @@
             .logo-subtitle {
                 font-size: 1.1rem;
                 letter-spacing: 2px;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                display: none;
-                gap: 0.5rem;
-            }
-            
-            nav.active ul {
-                display: flex;
             }
             
             .container {
@@ -836,18 +781,6 @@
                 max-width: 300px;
             }
             
-            .games-grid {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-                gap: 0.5rem;
-            }
-            
-            .ps5-games-popup {
-                width: 95%;
-                left: 2.5%;
-                transform: none;
-                padding: 1rem;
-            }
-            
             .time-slot {
                 flex-direction: column;
                 text-align: center;
@@ -867,10 +800,6 @@
                 grid-template-columns: 1fr;
             }
             
-            .games-categories {
-                grid-template-columns: 1fr;
-            }
-            
             .modal-title {
                 font-size: 1.5rem;
             }
@@ -880,37 +809,32 @@
                 margin: 10% auto;
             }
             
-            .ps5-tariff-compact {
-                max-width: 100%;
-                margin: 1rem 0;
-            }
-            
-            .rating-badge {
+            .price-item {
                 flex-direction: column;
+                text-align: center;
                 gap: 0.3rem;
-                padding: 0.8rem;
             }
             
-            .rating-badge .stars {
-                margin-right: 0;
-                font-size: 1.3rem;
+            .games-grid-improved {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 1rem;
             }
             
-            .rating-badge .score {
-                font-size: 1.3rem;
+            .game-icon {
+                width: 80px;
+                height: 80px;
             }
             
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-item {
-                height: 150px;
-                font-size: 1.1rem;
+            .game-title {
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .logo-text {
                 font-size: 2rem;
             }
@@ -943,18 +867,20 @@
             .address {
                 font-size: 1rem;
             }
-        }
-
-        /* Анимации */
-        .section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
+            
+            .games-grid-improved {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+            
+            .game-card {
+                padding: 1rem 0.5rem;
+            }
+            
+            .game-icon {
+                width: 70px;
+                height: 70px;
+            }
         }
     </style>
 </head>
@@ -967,18 +893,54 @@
             </div>
         </header>
 
-        <div class="menu-toggle" onclick="toggleMenu()">☰ Меню</div>
+        <div class="mobile-menu">
+            <div class="menu-grid">
+                <a href="#about" class="menu-item">
+                    <span class="menu-icon">🏛️</span>
+                    <span class="menu-text">О нас</span>
+                </a>
+                <a href="#" class="menu-item" onclick="openModal('dayTariffModal')">
+                    <span class="menu-icon">☀️</span>
+                    <span class="menu-text">Дневные тарифы</span>
+                </a>
+                <a href="#" class="menu-item" onclick="openModal('nightTariffModal')">
+                    <span class="menu-icon">🌙</span>
+                    <span class="menu-text">Ночные тарифы</span>
+                </a>
+                <a href="#pc-games" class="menu-item">
+                    <span class="menu-icon">🖥️</span>
+                    <span class="menu-text">ПК Игры</span>
+                </a>
+                <a href="#ps5-games" class="menu-item">
+                    <span class="menu-icon">🎮</span>
+                    <span class="menu-text">PS5 Игры</span>
+                </a>
+                <a href="#reviews" class="menu-item">
+                    <span class="menu-icon">💬</span>
+                    <span class="menu-text">Отзывы</span>
+                </a>
+                <a href="#schedule" class="menu-item">
+                    <span class="menu-icon">🕒</span>
+                    <span class="menu-text">Расписание</span>
+                </a>
+                <a href="#contacts" class="menu-item">
+                    <span class="menu-icon">📍</span>
+                    <span class="menu-text">Контакты</span>
+                </a>
+            </div>
+        </div>
 
-        <nav id="mainNav">
+        <nav class="desktop-menu">
             <ul>
                 <li><a href="#about">О нас</a></li>
-                <li><a href="#" onclick="openModal('dayTariffModal'); toggleMenu();">Дневные тарифы</a></li>
-                <li><a href="#" onclick="openModal('nightTariffModal'); toggleMenu();">Ночные тарифы</a></li>
-                <li><a href="#games" onclick="toggleMenu()">Все игры PS5</a></li>
-                <li><a href="#reviews" onclick="toggleMenu()">Отзывы</a></li>
-                <li><a href="#schedule" onclick="toggleMenu()">Расписание</a></li>
-                <li><a href="#social" onclick="toggleMenu()">Связь</a></li>
-                <li><a href="#contacts" onclick="toggleMenu()">Контакты</a></li>
+                <li><a href="#" onclick="openModal('dayTariffModal')">Дневные тарифы</a></li>
+                <li><a href="#" onclick="openModal('nightTariffModal')">Ночные тарифы</a></li>
+                <li><a href="#pc-games">ПК Игры</a></li>
+                <li><a href="#ps5-games">PS5 Игры</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#schedule">Расписание</a></li>
+                <li><a href="#social">Связь</a></li>
+                <li><a href="#contacts">Контакты</a></li>
             </ul>
         </nav>
 
@@ -996,10 +958,10 @@
                     <a href="#" class="cta-button" onclick="openModal('nightTariffModal')">Ночные тарифы (02:00-14:00)</a>
                 </div>
 
-                <div class="booking-notice">
+                <a href="https://t.me/+IRDifvFhLG85MmYy" target="_blank" class="booking-notice">
                     <h3 style="color: #ffd700; margin-bottom: 1rem;">🎯 Бронирование мест</h3>
                     <p style="font-size: 1.1rem;">Чтобы гарантировать себе место в час пик, бронируйте через наш Telegram-чат!</p>
-                </div>
+                </a>
             </section>
 
             <section id="schedule" class="section">
@@ -1029,112 +991,339 @@
                 <div class="gallery">
                     <div class="gallery-item">🏛️ Зона игровых ПК</div>
                     <div class="gallery-item">💎 Императорская VIP зона</div>
+                    <div class="gallery-item">🎯 Арена PlayStation 5</div>
+                </div>
+            </section>
+
+            <!-- РАЗДЕЛ КОМПЬЮТЕРНЫХ ИГР -->
+            <section id="pc-games" class="section">
+                <h2>🖥️ Компьютерные игры</h2>
+                
+                <div class="games-showcase">
+                    <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">11 топовых игр для игровых ПК</h3>
                     
-                    <div class="gallery-item" style="position: relative;">
-                        🎯 Арена PlayStation 5
-                        <div class="ps5-games-popup">
-                            <h3 style="color: #ffd700; text-align: center; margin-bottom: 1rem;">🎮 Популярные игры для PS5</h3>
-                            <div class="games-grid">
-                                <div class="game-item">
-                                    <div class="game-icon">UFS</div>
-                                    <div class="game-name">UFC 5</div>
-                                </div>
-                                <div class="game-item">
-                                    <div class="game-icon">FIFA</div>
-                                    <div class="game-name">FIFA 25</div>
-                                </div>
-                                <div class="game-item">
-                                    <div class="game-icon">MK1</div>
-                                    <div class="game-name">Mortal Kombat 1</div>
-                                </div>
-                                <div class="game-item">
-                                    <div class="game-icon">NHL</div>
-                                    <div class="game-name">NHL 25</div>
-                                </div>
-                                <div class="game-item">
-                                    <div class="game-icon">GTA</div>
-                                    <div class="game-name">GTA 5</div>
-                                </div>
-                                <div class="game-item">
-                                    <div class="game-icon">GOW</div>
-                                    <div class="game-name">God of War</div>
-                                </div>
-                                <div class="game-item">
-                                    <div class="game-icon">🕷️</div>
-                                    <div class="game-name">Spider-Man</div>
-                                </div>
-                                <div class="game-item">
-                                    <div class="game-icon">W3</div>
-                                    <div class="game-name">Ведьмак 3</div>
-                                </div>
+                    <div class="games-grid-improved">
+                        <!-- Dota 2 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg" alt="Dota 2">
                             </div>
-                            <div style="text-align: center; margin-top: 1rem;">
-                                <a href="#games" style="color: #ffd700; text-decoration: none; font-weight: bold;">
-                                    👇 Смотреть все игры
-                                </a>
+                            <div class="game-title">Dota 2</div>
+                            <div class="game-category">MOBA</div>
+                        </div>
+                        
+                        <!-- CS2 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg" alt="Counter-Strike 2">
                             </div>
+                            <div class="game-title">Counter-Strike 2</div>
+                            <div class="game-category">Шутер</div>
+                        </div>
+                        
+                        <!-- PUBG -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg" alt="PUBG">
+                            </div>
+                            <div class="game-title">PUBG</div>
+                            <div class="game-category">Батл-рояль</div>
+                        </div>
+                        
+                        <!-- Warface -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/header.jpg" alt="Warface">
+                            </div>
+                            <div class="game-title">Warface</div>
+                            <div class="game-category">Шутер</div>
+                        </div>
+                        
+                        <!-- Valorant -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt85008bc8358c1212/61d7f5aea39e025a45c3fb77/VALORANT_2022_EP1_Act1_PlayVALORANT_KeyArt_News.png" alt="Valorant">
+                            </div>
+                            <div class="game-title">Valorant</div>
+                            <div class="game-category">Тактический шутер</div>
+                        </div>
+                        
+                        <!-- Apex Legends -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg" alt="Apex Legends">
+                            </div>
+                            <div class="game-title">Apex Legends</div>
+                            <div class="game-category">Батл-рояль</div>
+                        </div>
+                        
+                        <!-- World of Tanks -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1407200/header.jpg" alt="World of Tanks">
+                            </div>
+                            <div class="game-title">World of Tanks</div>
+                            <div class="game-category">Танковый симулятор</div>
+                        </div>
+                        
+                        <!-- Minecraft -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1672970/header.jpg" alt="Minecraft">
+                            </div>
+                            <div class="game-title">Minecraft</div>
+                            <div class="game-category">Песочница</div>
+                        </div>
+                        
+                        <!-- Lineage 2 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/373700/header.jpg" alt="Lineage 2">
+                            </div>
+                            <div class="game-title">Lineage 2</div>
+                            <div class="game-category">MMORPG</div>
+                        </div>
+                        
+                        <!-- World of Warcraft -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://bnetcmsus-a.akamaihd.net/cms/blog_thumbnail/ds/DS8N8ZGRHJ9Q1642738284345.jpg" alt="World of Warcraft">
+                            </div>
+                            <div class="game-title">World of Warcraft</div>
+                            <div class="game-category">MMORPG</div>
+                        </div>
+                        
+                        <!-- Quake -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2310/header.jpg" alt="Quake">
+                            </div>
+                            <div class="game-title">Quake</div>
+                            <div class="game-category">Шутер</div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="games" class="section">
-                <h2>🎮 Полный список игр для PS5</h2>
+            <!-- РАЗДЕЛ PS5 ИГР -->
+            <section id="ps5-games" class="section">
+                <h2>🎮 Игры для PlayStation 5</h2>
                 
-                <div class="games-categories">
-                    <div class="category-card">
-                        <h3 class="category-title">🥊 Файтинги</h3>
-                        <ul class="games-list">
-                            <li class="game-list-item">Mortal Kombat 1</li>
-                            <li class="game-list-item">Mortal Kombat XL</li>
-                            <li class="game-list-item">Mortal Kombat 11</li>
-                            <li class="game-list-item">UFC 5</li>
-                        </ul>
+                <div class="games-showcase">
+                    <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">25 эксклюзивных игр для PS5</h3>
+                    
+                    <!-- Файтинги -->
+                    <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🥊 Файтинги</h4>
+                    <div class="games-grid-improved">
+                        <!-- Mortal Kombat 1 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1971870/header.jpg" alt="Mortal Kombat 1">
+                            </div>
+                            <div class="game-title">Mortal Kombat 1</div>
+                            <div class="game-category">Файтинг</div>
+                        </div>
+                        
+                        <!-- Mortal Kombat 11 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/976310/header.jpg" alt="Mortal Kombat 11">
+                            </div>
+                            <div class="game-title">Mortal Kombat 11</div>
+                            <div class="game-category">Файтинг</div>
+                        </div>
+                        
+                        <!-- UFC 5 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2182240/header.jpg" alt="UFC 5">
+                            </div>
+                            <div class="game-title">UFC 5</div>
+                            <div class="game-category">Файтинг</div>
+                        </div>
                     </div>
 
-                    <div class="category-card">
-                        <h3 class="category-title">⚽ Спортивные</h3>
-                        <ul class="games-list">
-                            <li class="game-list-item">FIFA 25</li>
-                            <li class="game-list-item">FIFA 20</li>
-                            <li class="game-list-item">FIFA 17</li>
-                            <li class="game-list-item">NHL 25</li>
-                            <li class="game-list-item">NBA 2K25</li>
-                        </ul>
+                    <!-- Спортивные -->
+                    <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">⚽ Спортивные</h4>
+                    <div class="games-grid-improved">
+                        <!-- FIFA 25 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2420250/header.jpg" alt="FIFA 25">
+                            </div>
+                            <div class="game-title">FIFA 25</div>
+                            <div class="game-category">Спорт</div>
+                        </div>
+                        
+                        <!-- NHL 25 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2420260/header.jpg" alt="NHL 25">
+                            </div>
+                            <div class="game-title">NHL 25</div>
+                            <div class="game-category">Спорт</div>
+                        </div>
+                        
+                        <!-- NBA 2K25 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2420270/header.jpg" alt="NBA 2K25">
+                            </div>
+                            <div class="game-title">NBA 2K25</div>
+                            <div class="game-category">Спорт</div>
+                        </div>
                     </div>
 
-                    <div class="category-card">
-                        <h3 class="category-title">🎯 Экшн/Приключения</h3>
-                        <ul class="games-list">
-                            <li class="game-list-item">GTA 5</li>
-                            <li class="game-list-item">Mafia</li>
-                            <li class="game-list-item">Dying Light 2</li>
-                            <li class="game-list-item">God of War</li>
-                            <li class="game-list-item">Spider-Man</li>
-                            <li class="game-list-item">Spider-Man: Miles Morales</li>
-                            <li class="game-list-item">Horizon Zero Dawn</li>
-                            <li class="game-list-item">Ведьмак 3: Дикая Охота</li>
-                            <li class="game-list-item">Watch Dogs 2</li>
-                            <li class="game-list-item">Uncharted 4: Путь вора</li>
-                            <li class="game-list-item">Ratchet & Clank</li>
-                        </ul>
+                    <!-- Экшн/Приключения -->
+                    <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🎯 Экшн/Приключения</h4>
+                    <div class="games-grid-improved">
+                        <!-- GTA 5 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg" alt="GTA 5">
+                            </div>
+                            <div class="game-title">GTA 5</div>
+                            <div class="game-category">Экшн</div>
+                        </div>
+                        
+                        <!-- God of War -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/header.jpg" alt="God of War">
+                            </div>
+                            <div class="game-title">God of War</div>
+                            <div class="game-category">Экшн</div>
+                        </div>
+                        
+                        <!-- Spider-Man -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1817070/header.jpg" alt="Spider-Man">
+                            </div>
+                            <div class="game-title">Spider-Man</div>
+                            <div class="game-category">Экшн</div>
+                        </div>
+                        
+                        <!-- The Witcher 3 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg" alt="The Witcher 3">
+                            </div>
+                            <div class="game-title">The Witcher 3</div>
+                            <div class="game-category">RPG</div>
+                        </div>
+                        
+                        <!-- Horizon Zero Dawn -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1151640/header.jpg" alt="Horizon Zero Dawn">
+                            </div>
+                            <div class="game-title">Horizon Zero Dawn</div>
+                            <div class="game-category">Экшн</div>
+                        </div>
+                        
+                        <!-- Uncharted 4 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1659420/header.jpg" alt="Uncharted 4">
+                            </div>
+                            <div class="game-title">Uncharted 4</div>
+                            <div class="game-category">Приключения</div>
+                        </div>
                     </div>
 
-                    <div class="category-card">
-                        <h3 class="category-title">🏎️ Гонки</h3>
-                        <ul class="games-list">
-                            <li class="game-list-item">Need for Speed Payback</li>
-                            <li class="game-list-item">Gran Turismo Sport</li>
-                            <li class="game-list-item">Driveclub</li>
-                        </ul>
-                    </div>
-
-                    <div class="category-card">
-                        <h3 class="category-title">👻 Хоррор/RPG</h3>
-                        <ul class="games-list">
-                            <li class="game-list-item">Resident Evil 7</li>
-                            <li class="game-list-item">Deus Ex</li>
-                        </ul>
+                    <!-- Другие игры -->
+                    <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🎮 Другие игры</h4>
+                    <div class="games-grid-improved">
+                        <!-- Mafia -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1030840/header.jpg" alt="Mafia">
+                            </div>
+                            <div class="game-title">Mafia</div>
+                            <div class="game-category">Экшн</div>
+                        </div>
+                        
+                        <!-- Dying Light 2 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/534380/header.jpg" alt="Dying Light 2">
+                            </div>
+                            <div class="game-title">Dying Light 2</div>
+                            <div class="game-category">Экшн</div>
+                        </div>
+                        
+                        <!-- Spider-Man: Miles Morales -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1817190/header.jpg" alt="Spider-Man: Miles Morales">
+                            </div>
+                            <div class="game-title">Spider-Man: Miles Morales</div>
+                            <div class="game-category">Экшн</div>
+                        </div>
+                        
+                        <!-- Watch Dogs 2 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/447040/header.jpg" alt="Watch Dogs 2">
+                            </div>
+                            <div class="game-title">Watch Dogs 2</div>
+                            <div class="game-category">Экшн</div>
+                        </div>
+                        
+                        <!-- Ratchet & Clank -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1895880/header.jpg" alt="Ratchet & Clank">
+                            </div>
+                            <div class="game-title">Ratchet & Clank</div>
+                            <div class="game-category">Экшн</div>
+                        </div>
+                        
+                        <!-- Need for Speed Payback -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1262580/header.jpg" alt="Need for Speed Payback">
+                            </div>
+                            <div class="game-title">Need for Speed Payback</div>
+                            <div class="game-category">Гонки</div>
+                        </div>
+                        
+                        <!-- Gran Turismo Sport -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/956260/header.jpg" alt="Gran Turismo Sport">
+                            </div>
+                            <div class="game-title">Gran Turismo Sport</div>
+                            <div class="game-category">Гонки</div>
+                        </div>
+                        
+                        <!-- Driveclub -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/310560/header.jpg" alt="Driveclub">
+                            </div>
+                            <div class="game-title">Driveclub</div>
+                            <div class="game-category">Гонки</div>
+                        </div>
+                        
+                        <!-- Resident Evil 7 -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/418370/header.jpg" alt="Resident Evil 7">
+                            </div>
+                            <div class="game-title">Resident Evil 7</div>
+                            <div class="game-category">Хоррор</div>
+                        </div>
+                        
+                        <!-- Deus Ex -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/337000/header.jpg" alt="Deus Ex">
+                            </div>
+                            <div class="game-title">Deus Ex</div>
+                            <div class="game-category">RPG</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1142,18 +1331,18 @@
             <section id="reviews" class="section">
                 <h2>💬 Отзывы наших геймеров</h2>
                 
-                <div class="reviews-stats">
+                <div style="text-align: center; margin: 1.5rem 0; color: #d4b483; font-size: 1.1rem;">
                     <p>Нас рекомендуют на Яндекс Картах</p>
-                    <div class="rating-badge">
-                        <span class="stars">★★★★★</span>
-                        <span class="score">5.0</span>
+                    <div style="display: inline-flex; align-items: center; background: rgba(255, 215, 0, 0.15); padding: 0.8rem 1.5rem; border-radius: 25px; margin: 1rem 0; border: 2px solid #ffd700;">
+                        <span style="color: #ffd700; font-size: 1.5rem; margin-right: 0.8rem;">★★★★★</span>
+                        <span style="font-size: 1.5rem; font-weight: bold; color: #ffd700;">5.0</span>
                     </div>
                     <p>На основе оценок реальных посетителей</p>
                 </div>
 
                 <div style="text-align: center; margin: 2rem 0;">
                     <a href="https://yandex.ru/maps/10665/kolchugino/?ll=39.376976%2C56.297982&mode=poi&poi%5Bpoint%5D=39.376856%2C56.298019&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D178329103177&tab=reviews&z=20" 
-                       class="all-reviews-btn" target="_blank">
+                       class="cta-button" target="_blank" style="background: linear-gradient(135deg, #ffd700, #ff8c00);">
                         📖 Читать все отзывы на Яндекс Картах
                     </a>
                 </div>
@@ -1208,10 +1397,10 @@
 
         <footer>
             <p>© 2024 Игровой клуб "КОЛИЗЕЙ". Все права защищены.</p>
-            <div class="footer-links">
-                <a href="https://t.me/+IRDifvFhLG85MmYy" class="footer-link" target="_blank">Telegram</a>
-                <a href="https://vk.com/kkk3363klg" class="footer-link" target="_blank">ВКонтакте</a>
-                <a href="https://yandex.ru/maps/org/kolizey/178329103177/?ll=39.376949%2C56.298018&z=17" class="footer-link" target="_blank">Яндекс.Карты</a>
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                <a href="https://t.me/+IRDifvFhLG85MmYy" style="color: #d4b483; text-decoration: none; padding: 0.5rem 1rem; border-radius: 20px; background: rgba(255, 215, 0, 0.1);" target="_blank">Telegram</a>
+                <a href="https://vk.com/kkk3363klg" style="color: #d4b483; text-decoration: none; padding: 0.5rem 1rem; border-radius: 20px; background: rgba(255, 215, 0, 0.1);" target="_blank">ВКонтакте</a>
+                <a href="https://yandex.ru/maps/org/kolizey/178329103177/?ll=39.376949%2C56.298018&z=17" style="color: #d4b483; text-decoration: none; padding: 0.5rem 1rem; border-radius: 20px; background: rgba(255, 215, 0, 0.1);" target="_blank">Яндекс.Карты</a>
             </div>
         </footer>
     </div>
@@ -1223,7 +1412,6 @@
             <h2 class="modal-title">⚔️ Дневные тарифы<br><span style="font-size: 1.4rem;">(14:00-02:00)</span></h2>
             
             <div class="tariff-background">
-                <img src="https://i.ibb.co/r28563MC/day-tariff.jpg" alt="Дневные тарифы">
                 <div class="tariff-overlay">ДНЕВНАЯ СЕССИЯ</div>
             </div>
             
@@ -1258,8 +1446,8 @@
                 </div>
             </div>
 
-            <div class="ps5-tariff-compact">
-                <h3>🎯 PlayStation 5</h3>
+            <div style="background: rgba(255, 255, 255, 0.08); padding: 1.2rem; border-radius: 12px; border: 2px solid #8B4513; margin: 1rem auto; max-width: 350px; text-align: center;">
+                <h3 style="color: #ffd700; font-size: 1.2rem; margin-bottom: 1rem; font-family: 'Georgia', serif;">🎯 PlayStation 5</h3>
                 <div class="price-list">
                     <div class="price-item"><span class="hours">1 геймпад</span><span class="price">100₽/час</span></div>
                     <div class="price-item"><span class="hours">2 геймпада</span><span class="price">200₽/час</span></div>
@@ -1274,7 +1462,6 @@
             <h2 class="modal-title">🌙 Ночные тарифы<br><span style="font-size: 1.4rem;">(02:00-14:00)</span></h2>
             
             <div class="tariff-background">
-                <img src="https://i.ibb.co/d0FvyxJ4/night-tariff.jpg" alt="Ночные тарифы">
                 <div class="tariff-overlay">НОЧНАЯ СЕССИЯ</div>
             </div>
             
@@ -1306,8 +1493,8 @@
                 </div>
             </div>
 
-            <div class="ps5-tariff-compact">
-                <h3>🎯 PlayStation 5 (ночь)</h3>
+            <div style="background: rgba(255, 255, 255, 0.08); padding: 1.2rem; border-radius: 12px; border: 2px solid #8B4513; margin: 1rem auto; max-width: 350px; text-align: center;">
+                <h3 style="color: #ffd700; font-size: 1.2rem; margin-bottom: 1rem; font-family: 'Georgia', serif;">🎯 PlayStation 5 (ночь)</h3>
                 <div class="price-list">
                     <div class="price-item"><span class="hours">1 геймпад</span><span class="price">150₽/час</span></div>
                 </div>
@@ -1316,22 +1503,6 @@
     </div>
 
     <script>
-        // Функция для бургер-меню
-        function toggleMenu() {
-            const nav = document.getElementById('mainNav');
-            nav.classList.toggle('active');
-        }
-
-        // Закрытие меню при клике на ссылку
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                const nav = document.getElementById('mainNav');
-                if (window.innerWidth <= 768) {
-                    nav.classList.remove('active');
-                }
-            });
-        });
-
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -1342,7 +1513,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Закрытие модального окна при клике вне его
         window.onclick = function(event) {
             const modals = document.querySelectorAll('.modal');
             modals.forEach(modal => {
@@ -1353,7 +1523,6 @@
             });
         }
 
-        // Закрытие модального окна при нажатии Escape
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 const modals = document.querySelectorAll('.modal');
@@ -1366,7 +1535,6 @@
             }
         });
 
-        // Плавная прокрутка для якорных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1380,14 +1548,12 @@
             });
         });
 
-        // Функция для обновления текущей смены
         function updateCurrentShift() {
             const now = new Date();
             const currentHour = now.getHours();
             const currentMinute = now.getMinutes();
             const currentTime = currentHour + currentMinute / 60;
             
-            // Сбрасываем все смены
             document.querySelectorAll('.time-slot').forEach(slot => {
                 slot.classList.remove('active');
                 const currentIndicator = slot.querySelector('.current');
@@ -1396,7 +1562,6 @@
                 }
             });
             
-            // Определяем активную смену
             let activeShift;
             if (currentTime >= 2 && currentTime < 14) {
                 activeShift = document.getElementById('nightShift');
@@ -1404,7 +1569,6 @@
                 activeShift = document.getElementById('dayShift');
             }
             
-            // Активируем текущую смену
             if (activeShift) {
                 activeShift.classList.add('active');
                 const currentIndicator = document.createElement('span');
@@ -1414,7 +1578,6 @@
             }
         }
 
-        // Анимация появления элементов при скролле
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1423,43 +1586,34 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 }
             });
         }, observerOptions);
 
-        // Применяем анимацию к секциям
         document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
             observer.observe(section);
         });
 
-        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             updateCurrentShift();
-            // Обновляем смену каждую минуту
             setInterval(updateCurrentShift, 60000);
-            
-            console.log('Добро пожаловать в КОЛИЗЕЙ! 🏛️');
-        });
 
-        // Предзагрузка изображений для лучшего UX
-        function preloadImages() {
-            const images = [
-                'https://i.ibb.co/r28563MC/day-tariff.jpg',
-                'https://i.ibb.co/d0FvyxJ4/night-tariff.jpg',
-                'https://i.ibb.co/VctPH2CQ/background.jpg'
-            ];
-            
-            images.forEach(src => {
-                const img = new Image();
-                img.src = src;
+            // Защита от битых изображений
+            const images = document.querySelectorAll('.game-icon img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.src = 'https://via.placeholder.com/100x100/8B4513/ffffff?text=' + this.alt.substring(0, 3);
+                });
             });
-        }
-
-        // Запускаем предзагрузку
-        preloadImages();
+        });
     </script>
 </body>
 </html>
+
 
 
