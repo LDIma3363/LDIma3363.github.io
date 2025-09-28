@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Игровой клуб КОЛИЗЕЙ</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <meta name="description" content="Игровой клуб КОЛИЗЕЙ в Кольчугино - современные игровые ПК, PS5, лучшие тарифы. Арена для настоящих геймеров!">
+    <meta name="keywords" content="игровой клуб, Кольчугино, КОЛИЗЕЙ, PS5, компьютерные игры, киберспорт">
+    <meta property="og:title" content="Игровой клуб КОЛИЗЕЙ - Легендарная арена для геймеров">
+    <meta property="og:description" content="Современные игровые ПК, PlayStation 5, лучшие тарифы в Кольчугино">
     <style>
         * {
             margin: 0;
@@ -16,17 +21,52 @@
             background: #1a1a1a;
             color: #fff;
             line-height: 1.6;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a1a"/><path d="M0 0L100 100M100 0L0 100" stroke="%23333" stroke-width="1"/></svg>');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
             overflow-x: hidden;
+        }
+
+        /* Анимированный фон для главного блока */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(45deg, #1a1a1a, #2a1f0e, #1a1a1a, #3a2a14);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Паттерн поверх градиента */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.1) 2px, transparent 2px);
+            background-size: 50px 50px, 30px 30px;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 50px 50px, 30px 30px; }
         }
 
         .overlay {
             background: rgba(0, 0, 0, 0.7);
             min-height: 100vh;
+            position: relative;
         }
 
         header {
@@ -43,9 +83,10 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             padding: 0.5rem 0;
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .logo-container {
@@ -56,6 +97,7 @@
             border-radius: 20px;
             margin: 0 1rem;
             transition: all 0.3s ease;
+            border: 2px solid rgba(255, 215, 0, 0.3);
         }
 
         header.sticky .logo-container {
@@ -78,12 +120,19 @@
             text-transform: uppercase;
             margin-bottom: 10px;
             transition: all 0.3s ease;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700, 0 0 60px #ff6b00; }
+            to { text-shadow: 0 0 30px #ffd700, 0 0 50px #ffd700, 0 0 70px #ff6b00, 0 0 80px #ff6b00; }
         }
 
         header.sticky .logo-text {
             font-size: 1.8rem;
             letter-spacing: 3px;
             margin-bottom: 0;
+            animation: none;
         }
 
         .logo-subtitle {
@@ -218,6 +267,7 @@
                 0 0 30px rgba(139, 69, 19, 0.4);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .section::before {
@@ -460,12 +510,39 @@
             padding: 2rem 0;
             margin-top: 3rem;
             border-top: 3px solid #ffd700;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Кнопка "Наверх" */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ffd700;
+            color: #2a1f0e;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            border: 2px solid #8B4513;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.7);
         }
 
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 10000;
             left: 0;
             top: 0;
             width: 100%;
@@ -499,7 +576,7 @@
             font-size: 2.5rem;
             cursor: pointer;
             transition: color 0.3s;
-            z-index: 1001;
+            z-index: 10001;
             background: rgba(42, 31, 14, 0.9);
             border-radius: 50%;
             width: 40px;
@@ -508,6 +585,11 @@
             align-items: center;
             justify-content: center;
             border: 2px solid #d4b483;
+        }
+
+        .close:hover {
+            color: #ff6b00;
+            background: rgba(42, 31, 14, 1);
         }
 
         .tariff-background {
@@ -564,6 +646,10 @@
             text-align: center;
         }
 
+        .tariff-card:hover {
+            transform: translateY(-5px);
+        }
+
         .tariff-card h3 {
             color: #ffd700;
             font-size: 1.2rem;
@@ -584,6 +670,11 @@
             border-radius: 8px;
             border-left: 4px solid #ffd700;
             transition: all 0.3s;
+        }
+
+        .price-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
         }
 
         .hours {
@@ -873,6 +964,14 @@
             .game-title {
                 font-size: 0.8rem;
             }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -930,6 +1029,10 @@
     </style>
 </head>
 <body>
+    <!-- Анимированный фон -->
+    <div class="animated-bg"></div>
+    <div class="bg-pattern"></div>
+
     <div class="overlay">
         <header id="mainHeader">
             <div class="logo-container">
@@ -1051,16 +1154,16 @@
                         <!-- Dota 2 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg" alt="Dota 2" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/cn0sfft/dota2.jpg" alt="Dota 2" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Dota 2</div>
                             <div class="game-category">MOBA</div>
                         </div>
                         
-                        <!-- CS2 -->
+                        <!-- Counter-Strike 2 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg" alt="Counter-Strike 2" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/HLHNfXVv/cs2.jpg" alt="Counter-Strike 2" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Counter-Strike 2</div>
                             <div class="game-category">Шутер</div>
@@ -1069,7 +1172,7 @@
                         <!-- PUBG -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg" alt="PUBG" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/chXYnBcB/pubg.jpg" alt="PUBG" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">PUBG</div>
                             <div class="game-category">Батл-рояль</div>
@@ -1078,7 +1181,7 @@
                         <!-- Warface -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/291480/header.jpg" alt="Warface" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/B5vwZRsd/warface.jpg" alt="Warface" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Warface</div>
                             <div class="game-category">Шутер</div>
@@ -1087,7 +1190,7 @@
                         <!-- Valorant -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt85008bc8358c1212/61d7f5aea39e025a45c3fb77/VALORANT_2022_EP1_Act1_PlayVALORANT_KeyArt_News.png" alt="Valorant" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/5Wc71q5Y/valorant.jpg" alt="Valorant" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Valorant</div>
                             <div class="game-category">Тактический шутер</div>
@@ -1096,7 +1199,7 @@
                         <!-- Apex Legends -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg" alt="Apex Legends" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/yFDCft4d/apex-legends.jpg" alt="Apex Legends" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Apex Legends</div>
                             <div class="game-category">Батл-рояль</div>
@@ -1105,7 +1208,7 @@
                         <!-- World of Tanks -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1407200/header.jpg" alt="World of Tanks" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/BV2JF2KZ/world-of-tanks.jpg" alt="World of Tanks" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">World of Tanks</div>
                             <div class="game-category">Танковый симулятор</div>
@@ -1114,7 +1217,7 @@
                         <!-- Minecraft -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1672970/header.jpg" alt="Minecraft" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/mrmnFTFk/minecraft.jpg" alt="Minecraft" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Minecraft</div>
                             <div class="game-category">Песочница</div>
@@ -1123,7 +1226,7 @@
                         <!-- Lineage 2 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/373700/header.jpg" alt="Lineage 2" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/7tt679m5/lineage2.jpg" alt="Lineage 2" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Lineage 2</div>
                             <div class="game-category">MMORPG</div>
@@ -1132,7 +1235,7 @@
                         <!-- World of Warcraft -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://bnetcmsus-a.akamaihd.net/cms/blog_thumbnail/ds/DS8N8ZGRHJ9Q1642738284345.jpg" alt="World of Warcraft" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/xSYcB4r4/wow.jpg" alt="World of Warcraft" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">World of Warcraft</div>
                             <div class="game-category">MMORPG</div>
@@ -1141,7 +1244,7 @@
                         <!-- Quake -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2310/header.jpg" alt="Quake" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/JRw571Hs/quake.jpg" alt="Quake" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Quake</div>
                             <div class="game-category">Шутер</div>
@@ -1155,7 +1258,7 @@
                 <h2>🎮 Игры для PlayStation 5</h2>
                 
                 <div class="games-showcase">
-                    <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">25 эксклюзивных игр для PS5</h3>
+                    <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">26 эксклюзивных игр для PS5</h3>
                     
                     <!-- Файтинги -->
                     <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🥊 Файтинги</h4>
@@ -1163,7 +1266,7 @@
                         <!-- Mortal Kombat 1 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1971870/header.jpg" alt="Mortal Kombat 1" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/Zp4PwXJ1/mk1.jpg" alt="Mortal Kombat 1" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Mortal Kombat 1</div>
                             <div class="game-category">Файтинг</div>
@@ -1172,16 +1275,25 @@
                         <!-- Mortal Kombat 11 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/976310/header.jpg" alt="Mortal Kombat 11" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/zts51hn/mk11.jpg" alt="Mortal Kombat 11" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Mortal Kombat 11</div>
+                            <div class="game-category">Файтинг</div>
+                        </div>
+
+                        <!-- Mortal Kombat XL -->
+                        <div class="game-card">
+                            <div class="game-icon">
+                                <img src="https://i.ibb.co/1GhNMH6V/mkxl.jpg" alt="Mortal Kombat XL" onerror="handleImageError(this)">
+                            </div>
+                            <div class="game-title">Mortal Kombat XL</div>
                             <div class="game-category">Файтинг</div>
                         </div>
                         
                         <!-- UFC 5 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2182240/header.jpg" alt="UFC 5" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/KjZZTV7b/ufc5.jpg" alt="UFC 5" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">UFC 5</div>
                             <div class="game-category">Файтинг</div>
@@ -1194,7 +1306,7 @@
                         <!-- FIFA 25 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://example.com/fifa25.jpg" alt="FIFA 25" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/5gS4kqmb/fifa25.jpg" alt="FIFA 25" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">FIFA 25</div>
                             <div class="game-category">Спорт</div>
@@ -1203,7 +1315,7 @@
                         <!-- NHL 25 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://example.com/nhl25.jpg" alt="NHL 25" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/j9YDddr9/nhl25.jpg" alt="NHL 25" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">NHL 25</div>
                             <div class="game-category">Спорт</div>
@@ -1212,7 +1324,7 @@
                         <!-- NBA 2K25 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://example.com/nba2k25.jpg" alt="NBA 2K25" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/7xxLHn5B/nba2k25.jpg" alt="NBA 2K25" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">NBA 2K25</div>
                             <div class="game-category">Спорт</div>
@@ -1225,7 +1337,7 @@
                         <!-- GTA 5 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg" alt="GTA 5" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/5Q3MTZS/gta5.jpg" alt="GTA 5" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">GTA 5</div>
                             <div class="game-category">Экшн</div>
@@ -1234,7 +1346,7 @@
                         <!-- God of War -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/header.jpg" alt="God of War" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/kVShdsJG/god-of-war.jpg" alt="God of War" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">God of War</div>
                             <div class="game-category">Экшн</div>
@@ -1243,7 +1355,7 @@
                         <!-- Spider-Man -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1817070/header.jpg" alt="Spider-Man" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/LhgrqRhr/spider-man.jpg" alt="Spider-Man" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Spider-Man</div>
                             <div class="game-category">Экшн</div>
@@ -1252,7 +1364,7 @@
                         <!-- The Witcher 3 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg" alt="The Witcher 3" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/cSLk8VGj/witcher3.jpg" alt="The Witcher 3" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">The Witcher 3</div>
                             <div class="game-category">RPG</div>
@@ -1261,7 +1373,7 @@
                         <!-- Horizon Zero Dawn -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1151640/header.jpg" alt="Horizon Zero Dawn" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/j9rFsXQx/horizon.jpg" alt="Horizon Zero Dawn" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Horizon Zero Dawn</div>
                             <div class="game-category">Экшн</div>
@@ -1270,7 +1382,7 @@
                         <!-- Uncharted 4 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1659420/header.jpg" alt="Uncharted 4" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/N2sM3cmT/uncharted4.jpg" alt="Uncharted 4" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Uncharted 4</div>
                             <div class="game-category">Приключения</div>
@@ -1283,7 +1395,7 @@
                         <!-- Mafia -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1030840/header.jpg" alt="Mafia" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/JfMP80N/mafia.jpg" alt="Mafia" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Mafia</div>
                             <div class="game-category">Экшн</div>
@@ -1292,7 +1404,7 @@
                         <!-- Dying Light 2 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/534380/header.jpg" alt="Dying Light 2" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/Q7DcNTYL/dying-light2.jpg" alt="Dying Light 2" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Dying Light 2</div>
                             <div class="game-category">Экшн</div>
@@ -1301,7 +1413,7 @@
                         <!-- Spider-Man: Miles Morales -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1817190/header.jpg" alt="Spider-Man: Miles Morales" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/Gf2kWtV7/spider-man-miles.jpg" alt="Spider-Man: Miles Morales" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Spider-Man: Miles Morales</div>
                             <div class="game-category">Экшн</div>
@@ -1310,7 +1422,7 @@
                         <!-- Watch Dogs 2 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/447040/header.jpg" alt="Watch Dogs 2" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/BH4zXkqM/watch-dogs2.jpg" alt="Watch Dogs 2" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Watch Dogs 2</div>
                             <div class="game-category">Экшн</div>
@@ -1319,7 +1431,7 @@
                         <!-- Ratchet & Clank -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1895880/header.jpg" alt="Ratchet & Clank" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/84sGNBZx/ratchet-clank.jpg" alt="Ratchet & Clank" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Ratchet & Clank</div>
                             <div class="game-category">Экшн</div>
@@ -1328,7 +1440,7 @@
                         <!-- Need for Speed Payback -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1262580/header.jpg" alt="Need for Speed Payback" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/gMjVK7cw/nfs-payback.jpg" alt="Need for Speed Payback" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Need for Speed Payback</div>
                             <div class="game-category">Гонки</div>
@@ -1337,7 +1449,7 @@
                         <!-- Gran Turismo Sport -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/956260/header.jpg" alt="Gran Turismo Sport" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/NMTMjmH/gran-turismo.jpg" alt="Gran Turismo Sport" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Gran Turismo Sport</div>
                             <div class="game-category">Гонки</div>
@@ -1346,7 +1458,7 @@
                         <!-- Driveclub -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/310560/header.jpg" alt="Driveclub" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/PGWjWp2L/driveclub.jpg" alt="Driveclub" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Driveclub</div>
                             <div class="game-category">Гонки</div>
@@ -1355,7 +1467,7 @@
                         <!-- Resident Evil 7 -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/418370/header.jpg" alt="Resident Evil 7" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/b5Kf7W1N/resident-evil7.jpg" alt="Resident Evil 7" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Resident Evil 7</div>
                             <div class="game-category">Хоррор</div>
@@ -1364,7 +1476,7 @@
                         <!-- Deus Ex -->
                         <div class="game-card">
                             <div class="game-icon">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/337000/header.jpg" alt="Deus Ex" onerror="handleImageError(this)">
+                                <img src="https://i.ibb.co/NnQBKShX/deus-ex.jpg" alt="Deus Ex" onerror="handleImageError(this)">
                             </div>
                             <div class="game-title">Deus Ex</div>
                             <div class="game-category">RPG</div>
@@ -1449,6 +1561,9 @@
             </div>
         </footer>
     </div>
+
+    <!-- Кнопка "Наверх" -->
+    <div class="back-to-top" title="Вернуться наверх">↑</div>
 
     <!-- Модальные окна тарифов -->
     <div id="dayTariffModal" class="modal">
@@ -1580,14 +1695,19 @@
             }
         });
 
+        // Улучшенная плавная прокрутка с учетом фиксированного меню
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const headerOffset = 100;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
@@ -1596,8 +1716,6 @@
         function updateCurrentShift() {
             const now = new Date();
             const currentHour = now.getHours();
-            const currentMinute = now.getMinutes();
-            const currentTime = currentHour + currentMinute / 60;
             
             document.querySelectorAll('.time-slot').forEach(slot => {
                 slot.classList.remove('active');
@@ -1608,7 +1726,7 @@
             });
             
             let activeShift;
-            if (currentTime >= 2 && currentTime < 14) {
+            if (currentHour >= 2 && currentHour < 14) {
                 activeShift = document.getElementById('nightShift');
             } else {
                 activeShift = document.getElementById('dayShift');
@@ -1620,6 +1738,19 @@
                 currentIndicator.className = 'current';
                 currentIndicator.textContent = '● Сейчас активно';
                 activeShift.appendChild(currentIndicator);
+                
+                // Обновить текст в зависимости от времени
+                const shiftInfo = document.createElement('div');
+                shiftInfo.style.cssText = 'color: #ff6b00; font-weight: bold; margin-top: 0.5rem; font-size: 0.9rem;';
+                shiftInfo.textContent = currentHour >= 2 && currentHour < 14 ? 
+                    '🌙 Действуют ночные тарифы' : '☀️ Действуют дневные тарифы';
+                
+                // Удалить старую информацию если есть
+                const oldInfo = document.querySelector('.shift-info');
+                if (oldInfo) oldInfo.remove();
+                
+                shiftInfo.className = 'shift-info';
+                activeShift.parentElement.appendChild(shiftInfo);
             }
         }
 
@@ -1651,6 +1782,7 @@
                 'Quake': '💀',
                 'Mortal Kombat 1': '🥋',
                 'Mortal Kombat 11': '🥊',
+                'Mortal Kombat XL': '🥊',
                 'UFC 5': '🥊',
                 'FIFA 25': '⚽',
                 'NHL 25': '🏒',
@@ -1686,6 +1818,14 @@
             } else {
                 header.classList.remove('sticky');
             }
+
+            // Показ/скрытие кнопки "Наверх"
+            const backToTop = document.querySelector('.back-to-top');
+            if (scrollTop > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
         }
 
         const observerOptions = {
@@ -1713,8 +1853,16 @@
             updateCurrentShift();
             setInterval(updateCurrentShift, 60000);
             
-            // Добавляем обработчик скролла для фиксированного меню
+            // Добавляем обработчик скролла для фиксированного меню и кнопки "Наверх"
             window.addEventListener('scroll', handleScroll);
+
+            // Обработчик для кнопки "Наверх"
+            document.querySelector('.back-to-top').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
 
             // Предварительная проверка изображений
             const images = document.querySelectorAll('.game-icon img');
