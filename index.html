@@ -24,47 +24,38 @@
             overflow-x: hidden;
         }
 
-        /* Видео-фон */
-        .video-background {
+        .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -2;
-            overflow: hidden;
+            background: linear-gradient(45deg, #1a1a1a, #2a1f0e, #1a1a1a, #3a2a14);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
         }
 
-        #bgVideo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.4);
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(26, 26, 26, 0.9), rgba(42, 31, 14, 0.8));
-            z-index: -1;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .overlay {
-            background: rgba(0, 0, 0, 0.7);
             min-height: 100vh;
             position: relative;
         }
 
         header {
-            background: transparent;
+            background: linear-gradient(135deg, rgba(42, 31, 14, 0.95), rgba(74, 55, 28, 0.95));
             padding: 1rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            border-bottom: 3px solid #ffd700;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         header.sticky {
@@ -72,10 +63,9 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(42, 31, 14, 0.98);
             padding: 0.5rem 0;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .logo-container {
@@ -87,6 +77,7 @@
             margin: 0 1rem;
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 215, 0, 0.3);
+            background: linear-gradient(135deg, rgba(74, 55, 28, 0.8), rgba(42, 31, 14, 0.8));
         }
 
         header.sticky .logo-container {
@@ -242,12 +233,8 @@
         }
 
         .section {
-            background: linear-gradient(135deg, 
-                rgba(30, 25, 20, 0.95) 0%, 
-                rgba(50, 40, 30, 0.95) 50%, 
-                rgba(30, 25, 20, 0.95) 100%);
             margin: 2rem 0;
-            padding: 2rem 1rem;
+            padding: 3rem 1rem;
             border-radius: 15px;
             border: 3px solid #8B4513;
             box-shadow: 
@@ -257,21 +244,14 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(45deg, 
-                    transparent 0%, 
-                    rgba(139, 69, 19, 0.1) 50%, 
-                    transparent 100%);
-            pointer-events: none;
+        .section-content {
+            position: relative;
+            z-index: 2;
         }
 
         h2 {
@@ -502,7 +482,6 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Кнопка "Наверх" */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -528,6 +507,7 @@
             box-shadow: 0 6px 20px rgba(255, 215, 0, 0.7);
         }
 
+        /* Улучшенные модальные окна с полноразмерным фоном */
         .modal {
             display: none;
             position: fixed;
@@ -541,20 +521,39 @@
             overflow-y: auto;
         }
 
+        .modal-with-bg {
+            background: rgba(0, 0, 0, 0.85);
+        }
+
         .modal-content {
             background: linear-gradient(135deg, 
-                rgba(30, 25, 20, 0.98) 0%, 
-                rgba(50, 40, 30, 0.98) 100%);
-            margin: 5% auto;
-            padding: 1.5rem;
+                rgba(30, 25, 20, 0.95) 0%, 
+                rgba(50, 40, 30, 0.95) 100%);
+            margin: 2% auto;
+            padding: 2rem;
             border-radius: 20px;
             border: 3px solid #8B4513;
             width: 95%;
             max-width: 900px;
             position: relative;
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                inset 0 0 0 1px rgba(255, 215, 0, 0.2);
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                inset 0 0 0 1px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .modal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            filter: brightness(0.4) contrast(1.2);
         }
 
         .close {
@@ -579,42 +578,6 @@
         .close:hover {
             color: #ff6b00;
             background: rgba(42, 31, 14, 1);
-        }
-
-        .tariff-background {
-            width: 100%;
-            height: 150px;
-            border-radius: 15px;
-            margin: 1rem 0;
-            border: 3px solid #d4b483;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .tariff-background img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .tariff-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(74, 55, 28, 0.8) 0%, 
-                rgba(42, 31, 14, 0.9) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffd700;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-            font-family: 'Georgia', serif;
         }
 
         .tariff-grid {
@@ -805,6 +768,8 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s;
+            image-rendering: high-quality;
+            filter: brightness(1.05) contrast(1.05);
         }
 
         .game-card:hover .game-icon img {
@@ -888,7 +853,7 @@
             }
             
             .section {
-                padding: 1.5rem 0.8rem;
+                padding: 2rem 0.8rem;
                 margin: 1.5rem 0;
             }
             
@@ -985,14 +950,6 @@
                 margin: 5% auto;
             }
             
-            .tariff-background {
-                height: 120px;
-            }
-            
-            .tariff-overlay {
-                font-size: 1.2rem;
-            }
-            
             .phone {
                 font-size: 1.3rem;
             }
@@ -1018,17 +975,7 @@
     </style>
 </head>
 <body>
-    <!-- Видео-фон сайта -->
-    <div class="video-background">
-        <iframe width="100%" height="100%" 
-                src="https://www.youtube.com/embed/afEf2tAMkrI?autoplay=1&mute=1&loop=1&playlist=afEf2tAMkrI&controls=0&modestbranding=1&rel=0&showinfo=0" 
-                frameborder="0" 
-                allow="autoplay; encrypted-media" 
-                allowfullscreen
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-        </iframe>
-        <div class="video-overlay"></div>
-    </div>
+    <div class="animated-bg"></div>
 
     <div class="overlay">
         <header id="mainHeader">
@@ -1090,473 +1037,436 @@
         </nav>
 
         <div class="container">
-            <section id="about" class="section">
-                <h2>Добро пожаловать на арену КОЛИЗЕЙ</h2>
-                <div class="tariff-background">
-                    <img src="https://i.ibb.co/KzDHrgwL/kolizei-bg.jpg" alt="Колизей арена">
-                    <div class="tariff-overlay">КОЛИЗЕЙ - ЛЕГЕНДАРНАЯ АРЕНА ДЛЯ ГЕЙМЕРОВ</div>
-                </div>
-                <p style="text-align: center; font-size: 1.1rem; line-height: 1.6;">
-                    Где каждый бой - легенда, а каждый геймер - гладиатор цифровой эпохи! 
-                    Величественная атмосфера древнего Колизея встречает современные технологии 
-                    игровых ПК премиум-класса и новейшие PlayStation 5.
-                </p>
-                
-                <div class="cta-buttons">
-                    <a href="#" class="cta-button" onclick="openModal('dayTariffModal')">Дневные тарифы (14:00-02:00)</a>
-                    <a href="#" class="cta-button" onclick="openModal('nightTariffModal')">Ночные тарифы (02:00-14:00)</a>
-                </div>
-
-                <a href="https://t.me/+IRDifvFhLG85MmYy" target="_blank" class="booking-notice">
-                    <h3 style="color: #ffd700; margin-bottom: 1rem;">🎯 Бронирование мест</h3>
-                    <p style="font-size: 1.1rem;">Чтобы гарантировать себе место в час пик, бронируйте через наш Telegram-чат!</p>
-                </a>
-            </section>
-
-            <section id="schedule" class="section">
-                <h2>🕒 Расписание смен</h2>
-                
-                <div class="tariff-background">
-                    <img src="https://i.ibb.co/VctPH2CQ/schedule-bg.jpg" alt="Расписание смен">
-                    <div class="tariff-overlay">РАСПИСАНИЕ СМЕН</div>
-                </div>
-                
-                <div style="text-align: center; margin: 1.5rem 0;">
-                    <div class="schedule-card">
-                        <div class="time-slot active" id="nightShift">
-                            <span class="time">02:00 - 14:00</span>
-                            <span class="status">🌙 Ночная смена</span>
-                            <span class="current">● Сейчас активно</span>
-                        </div>
-                        <div class="time-slot" id="dayShift">
-                            <span class="time">14:00 - 02:00</span>
-                            <span class="status">☀️ Дневная смена</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="text-align: center; color: #d4b483; font-size: 1rem;">
-                    <p>💡 <strong>Подсказка:</strong> Тарифы меняются в зависимости от времени суток</p>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2>Наша арена</h2>
-                <div class="tariff-background">
-                    <img src="https://i.ibb.co/nqgBT4NP/arena-bg.jpg" alt="Наша арена">
-                    <div class="tariff-overlay">НАША АРЕНА</div>
-                </div>
-                <div class="gallery">
-                    <div class="gallery-item">🏛️ Зона игровых ПК</div>
-                    <div class="gallery-item">💎 Императорская VIP зона</div>
-                    <div class="gallery-item">🎯 Арена PlayStation 5</div>
-                </div>
-            </section>
-
-            <!-- РАЗДЕЛ КОМПЬЮТЕРНЫХ ИГР -->
-            <section id="pc-games" class="section">
-                <h2>🖥️ Компьютерные игры</h2>
-                
-                <div class="games-showcase">
-                    <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">11 топовых игр для игровых ПК</h3>
+            <section id="about" class="section" style="background-image: url('https://i.ibb.co/KzDHrgwL/kolizei-bg.jpg')">
+                <div class="section-content">
+                    <h2>Добро пожаловать на арену КОЛИЗЕЙ</h2>
+                    <p style="text-align: center; font-size: 1.1rem; line-height: 1.6;">
+                        Где каждый бой - легенда, а каждый геймер - гладиатор цифровой эпохи! 
+                        Величественная атмосфера древнего Колизея встречает современные технологии 
+                        игровых ПК премиум-класса и новейшие PlayStation 5.
+                    </p>
                     
-                    <div class="games-grid-improved">
-                        <!-- Dota 2 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/cn0sfft/dota2.jpg" alt="Dota 2" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Dota 2</div>
-                            <div class="game-category">MOBA</div>
-                        </div>
-                        
-                        <!-- Counter-Strike 2 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/HLHNfXVv/cs2.jpg" alt="Counter-Strike 2" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Counter-Strike 2</div>
-                            <div class="game-category">Шутер</div>
-                        </div>
-                        
-                        <!-- PUBG -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/chXYnBcB/pubg.jpg" alt="PUBG" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">PUBG</div>
-                            <div class="game-category">Батл-рояль</div>
-                        </div>
-                        
-                        <!-- Warface -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/B5vwZRsd/warface.jpg" alt="Warface" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Warface</div>
-                            <div class="game-category">Шутер</div>
-                        </div>
-                        
-                        <!-- Valorant -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/5Wc71q5Y/valorant.jpg" alt="Valorant" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Valorant</div>
-                            <div class="game-category">Тактический шутер</div>
-                        </div>
-                        
-                        <!-- Apex Legends -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/yFDCft4d/apex-legends.jpg" alt="Apex Legends" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Apex Legends</div>
-                            <div class="game-category">Батл-рояль</div>
-                        </div>
-                        
-                        <!-- World of Tanks -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/BV2JF2KZ/world-of-tanks.jpg" alt="World of Tanks" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">World of Tanks</div>
-                            <div class="game-category">Танковый симулятор</div>
-                        </div>
-                        
-                        <!-- Minecraft -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/mrmnFTFk/minecraft.jpg" alt="Minecraft" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Minecraft</div>
-                            <div class="game-category">Песочница</div>
-                        </div>
-                        
-                        <!-- Lineage 2 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/7tt679m5/lineage2.jpg" alt="Lineage 2" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Lineage 2</div>
-                            <div class="game-category">MMORPG</div>
-                        </div>
-                        
-                        <!-- World of Warcraft -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/xSYcB4r4/wow.jpg" alt="World of Warcraft" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">World of Warcraft</div>
-                            <div class="game-category">MMORPG</div>
-                        </div>
-                        
-                        <!-- Quake -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/JRw571Hs/quake.jpg" alt="Quake" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Quake</div>
-                            <div class="game-category">Шутер</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- РАЗДЕЛ PS5 ИГР -->
-            <section id="ps5-games" class="section">
-                <h2>🎮 Игры для PlayStation 5</h2>
-                
-                <div class="games-showcase">
-                    <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">26 эксклюзивных игр для PS5</h3>
-                    
-                    <!-- Файтинги -->
-                    <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🥊 Файтинги</h4>
-                    <div class="games-grid-improved">
-                        <!-- Mortal Kombat 1 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/Zp4PwXJ1/mk1.jpg" alt="Mortal Kombat 1" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Mortal Kombat 1</div>
-                            <div class="game-category">Файтинг</div>
-                        </div>
-                        
-                        <!-- Mortal Kombat 11 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/zts51hn/mk11.jpg" alt="Mortal Kombat 11" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Mortal Kombat 11</div>
-                            <div class="game-category">Файтинг</div>
-                        </div>
-
-                        <!-- Mortal Kombat XL -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/1GhNMH6V/mkxl.jpg" alt="Mortal Kombat XL" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Mortal Kombat XL</div>
-                            <div class="game-category">Файтинг</div>
-                        </div>
-                        
-                        <!-- UFC 5 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/KjZZTV7b/ufc5.jpg" alt="UFC 5" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">UFC 5</div>
-                            <div class="game-category">Файтинг</div>
-                        </div>
+                    <div class="cta-buttons">
+                        <a href="#" class="cta-button" onclick="openModal('dayTariffModal')">Дневные тарифы (14:00-02:00)</a>
+                        <a href="#" class="cta-button" onclick="openModal('nightTariffModal')">Ночные тарифы (02:00-14:00)</a>
                     </div>
 
-                    <!-- Спортивные -->
-                    <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">⚽ Спортивные</h4>
-                    <div class="games-grid-improved">
-                        <!-- FIFA 25 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/5gS4kqmb/fifa25.jpg" alt="FIFA 25" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">FIFA 25</div>
-                            <div class="game-category">Спорт</div>
-                        </div>
-                        
-                        <!-- NHL 25 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/j9YDddr9/nhl25.jpg" alt="NHL 25" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">NHL 25</div>
-                            <div class="game-category">Спорт</div>
-                        </div>
-                        
-                        <!-- NBA 2K25 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/7xxLHn5B/nba2k25.jpg" alt="NBA 2K25" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">NBA 2K25</div>
-                            <div class="game-category">Спорт</div>
-                        </div>
-                    </div>
-
-                    <!-- Экшн/Приключения -->
-                    <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🎯 Экшн/Приключения</h4>
-                    <div class="games-grid-improved">
-                        <!-- GTA 5 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/5Q3MTZS/gta5.jpg" alt="GTA 5" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">GTA 5</div>
-                            <div class="game-category">Экшн</div>
-                        </div>
-                        
-                        <!-- God of War -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/kVShdsJG/god-of-war.jpg" alt="God of War" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">God of War</div>
-                            <div class="game-category">Экшн</div>
-                        </div>
-                        
-                        <!-- Spider-Man -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/LhgrqRhr/spider-man.jpg" alt="Spider-Man" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Spider-Man</div>
-                            <div class="game-category">Экшн</div>
-                        </div>
-                        
-                        <!-- The Witcher 3 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/cSLk8VGj/witcher3.jpg" alt="The Witcher 3" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">The Witcher 3</div>
-                            <div class="game-category">RPG</div>
-                        </div>
-                        
-                        <!-- Horizon Zero Dawn -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/j9rFsXQx/horizon.jpg" alt="Horizon Zero Dawn" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Horizon Zero Dawn</div>
-                            <div class="game-category">Экшн</div>
-                        </div>
-                        
-                        <!-- Uncharted 4 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/N2sM3cmT/uncharted4.jpg" alt="Uncharted 4" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Uncharted 4</div>
-                            <div class="game-category">Приключения</div>
-                        </div>
-                    </div>
-
-                    <!-- Другие игры -->
-                    <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🎮 Другие игры</h4>
-                    <div class="games-grid-improved">
-                        <!-- Mafia -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/JfMP80N/mafia.jpg" alt="Mafia" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Mafia</div>
-                            <div class="game-category">Экшн</div>
-                        </div>
-                        
-                        <!-- Dying Light 2 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/Q7DcNTYL/dying-light2.jpg" alt="Dying Light 2" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Dying Light 2</div>
-                            <div class="game-category">Экшн</div>
-                        </div>
-                        
-                        <!-- Spider-Man: Miles Morales -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/Gf2kWtV7/spider-man-miles.jpg" alt="Spider-Man: Miles Morales" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Spider-Man: Miles Morales</div>
-                            <div class="game-category">Экшн</div>
-                        </div>
-                        
-                        <!-- Watch Dogs 2 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/BH4zXkqM/watch-dogs2.jpg" alt="Watch Dogs 2" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Watch Dogs 2</div>
-                            <div class="game-category">Экшн</div>
-                        </div>
-                        
-                        <!-- Ratchet & Clank -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/84sGNBZx/ratchet-clank.jpg" alt="Ratchet & Clank" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Ratchet & Clank</div>
-                            <div class="game-category">Экшн</div>
-                        </div>
-                        
-                        <!-- Need for Speed Payback -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/gMjVK7cw/nfs-payback.jpg" alt="Need for Speed Payback" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Need for Speed Payback</div>
-                            <div class="game-category">Гонки</div>
-                        </div>
-                        
-                        <!-- Gran Turismo Sport -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/NMTMjmH/gran-turismo.jpg" alt="Gran Turismo Sport" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Gran Turismo Sport</div>
-                            <div class="game-category">Гонки</div>
-                        </div>
-                        
-                        <!-- Driveclub -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/PGWjWp2L/driveclub.jpg" alt="Driveclub" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Driveclub</div>
-                            <div class="game-category">Гонки</div>
-                        </div>
-                        
-                        <!-- Resident Evil 7 -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/b5Kf7W1N/resident-evil7.jpg" alt="Resident Evil 7" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Resident Evil 7</div>
-                            <div class="game-category">Хоррор</div>
-                        </div>
-                        
-                        <!-- Deus Ex -->
-                        <div class="game-card">
-                            <div class="game-icon">
-                                <img src="https://i.ibb.co/NnQBKShX/deus-ex.jpg" alt="Deus Ex" onerror="handleImageError(this)">
-                            </div>
-                            <div class="game-title">Deus Ex</div>
-                            <div class="game-category">RPG</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="reviews" class="section">
-                <h2>💬 Отзывы наших геймеров</h2>
-                
-                <div style="text-align: center; margin: 1.5rem 0; color: #d4b483; font-size: 1.1rem;">
-                    <p>Нас рекомендуют на Яндекс Картах</p>
-                    <div style="display: inline-flex; align-items: center; background: rgba(255, 215, 0, 0.15); padding: 0.8rem 1.5rem; border-radius: 25px; margin: 1rem 0; border: 2px solid #ffd700;">
-                        <span style="color: #ffd700; font-size: 1.5rem; margin-right: 0.8rem;">★★★★★</span>
-                        <span style="font-size: 1.5rem; font-weight: bold; color: #ffd700;">5.0</span>
-                    </div>
-                    <p>На основе оценок реальных посетителей</p>
-                </div>
-
-                <div style="text-align: center; margin: 2rem 0;">
-                    <a href="https://yandex.ru/maps/10665/kolchugino/?ll=39.376976%2C56.297982&mode=poi&poi%5Bpoint%5D=39.376856%2C56.298019&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D178329103177&tab=reviews&z=20" 
-                       class="cta-button" target="_blank" style="background: linear-gradient(135deg, #ffd700, #ff8c00);">
-                        📖 Читать все отзывы на Яндекс Картах
+                    <a href="https://t.me/+IRDifvFhLG85MmYy" target="_blank" class="booking-notice">
+                        <h3 style="color: #ffd700; margin-bottom: 1rem;">🎯 Бронирование мест</h3>
+                        <p style="font-size: 1.1rem;">Чтобы гарантировать себе место в час пик, бронируйте через наш Telegram-чат!</p>
                     </a>
                 </div>
+            </section>
 
-                <div style="text-align: center; color: #d4b483; font-size: 1rem;">
-                    <p>⭐ Все отзывы настоящие - оставлены реальными посетителями нашего клуба</p>
+            <section id="schedule" class="section" style="background-image: url('https://i.ibb.co/VctPH2CQ/schedule-bg.jpg')">
+                <div class="section-content">
+                    <h2>🕒 Расписание смен</h2>
+                    
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <div class="schedule-card">
+                            <div class="time-slot active" id="nightShift">
+                                <span class="time">02:00 - 14:00</span>
+                                <span class="status">🌙 Ночная смена</span>
+                                <span class="current">● Сейчас активно</span>
+                            </div>
+                            <div class="time-slot" id="dayShift">
+                                <span class="time">14:00 - 02:00</span>
+                                <span class="status">☀️ Дневная смена</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; color: #d4b483; font-size: 1rem;">
+                        <p>💡 <strong>Подсказка:</strong> Тарифы меняются в зависимости от времени суток</p>
+                    </div>
                 </div>
             </section>
 
-            <section id="social" class="section">
-                <h2>Связь с нами</h2>
-                
-                <div class="social-buttons">
-                    <a href="https://t.me/+IRDifvFhLG85MmYy" class="social-button social-telegram" target="_blank">
-                        <span class="social-icon">📱</span>
-                        <span>Telegram-чат для брони</span>
-                    </a>
-                    
-                    <a href="https://vk.com/kkk3363klg" class="social-button social-vk" target="_blank">
-                        <span class="social-icon">👥</span>
-                        <span>Группа ВКонтакте</span>
-                    </a>
-                    
-                    <a href="https://yandex.ru/maps/org/kolizey/178329103177/?ll=39.376949%2C56.298018&z=17" class="social-button social-map" target="_blank">
-                        <span class="social-icon">📍</span>
-                        <span>Яндекс.Карты</span>
-                    </a>
-                </div>
-
-                <div style="text-align: center; margin-top: 1.5rem;">
-                    <p style="font-size: 1.1rem; color: #d4b483;">Следите за акциями и мероприятиями в наших соцсетях!</p>
+            <section class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+                <div class="section-content">
+                    <h2>Наша арена</h2>
+                    <div class="gallery">
+                        <div class="gallery-item">🏛️ Зона игровых ПК</div>
+                        <div class="gallery-item">💎 Императорская VIP зона</div>
+                        <div class="gallery-item">🎯 Арена PlayStation 5</div>
+                    </div>
                 </div>
             </section>
 
-            <section id="contacts" class="section">
-                <h2>Вход на арену</h2>
-                <div class="contact-info">
-                    <div class="address">📍 Владимирская область, г. Кольчугино, ул. Дружбы 7А</div>
-                    <a href="tel:+79995229450" class="phone">📞 8-999-522-94-50</a>
-                    <p>🕒 <strong>Время работы арены:</strong> Круглосуточно</p>
+            <section id="pc-games" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+                <div class="section-content">
+                    <h2>🖥️ Компьютерные игры</h2>
                     
-                    <div style="margin-top: 1.5rem;">
-                        <a href="https://yandex.ru/maps/org/kolizey/178329103177/?ll=39.376949%2C56.298018&z=17" 
-                           target="_blank" 
-                           style="color: #ffd700; text-decoration: none; font-size: 1.1rem;">
-                            📍 Посмотреть на Яндекс.Картах
+                    <div class="games-showcase">
+                        <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">11 топовых игр для игровых ПК</h3>
+                        
+                        <div class="games-grid-improved">
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/cn0sfft/dota2.jpg" alt="Dota 2" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Dota 2</div>
+                                <div class="game-category">MOBA</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/HLHNfXVv/cs2.jpg" alt="Counter-Strike 2" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Counter-Strike 2</div>
+                                <div class="game-category">Шутер</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/chXYnBcB/pubg.jpg" alt="PUBG" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">PUBG</div>
+                                <div class="game-category">Батл-рояль</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/B5vwZRsd/warface.jpg" alt="Warface" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Warface</div>
+                                <div class="game-category">Шутер</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/5Wc71q5Y/valorant.jpg" alt="Valorant" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Valorant</div>
+                                <div class="game-category">Тактический шутер</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/yFDCft4d/apex-legends.jpg" alt="Apex Legends" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Apex Legends</div>
+                                <div class="game-category">Батл-рояль</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/BV2JF2KZ/world-of-tanks.jpg" alt="World of Tanks" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">World of Tanks</div>
+                                <div class="game-category">Танковый симулятор</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/mrmnFTFk/minecraft.jpg" alt="Minecraft" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Minecraft</div>
+                                <div class="game-category">Песочница</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/7tt679m5/lineage2.jpg" alt="Lineage 2" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Lineage 2</div>
+                                <div class="game-category">MMORPG</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/xSYcB4r4/wow.jpg" alt="World of Warcraft" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">World of Warcraft</div>
+                                <div class="game-category">MMORPG</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/JRw571Hs/quake.jpg" alt="Quake" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Quake</div>
+                                <div class="game-category">Шутер</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ps5-games" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+                <div class="section-content">
+                    <h2>🎮 Игры для PlayStation 5</h2>
+                    
+                    <div class="games-showcase">
+                        <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">26 эксклюзивных игр для PS5</h3>
+                        
+                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🥊 Файтинги</h4>
+                        <div class="games-grid-improved">
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/Zp4PwXJ1/mk1.jpg" alt="Mortal Kombat 1" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Mortal Kombat 1</div>
+                                <div class="game-category">Файтинг</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/zts51hn/mk11.jpg" alt="Mortal Kombat 11" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Mortal Kombat 11</div>
+                                <div class="game-category">Файтинг</div>
+                            </div>
+
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/1GhNMH6V/mkxl.jpg" alt="Mortal Kombat XL" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Mortal Kombat XL</div>
+                                <div class="game-category">Файтинг</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/KjZZTV7b/ufc5.jpg" alt="UFC 5" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">UFC 5</div>
+                                <div class="game-category">Файтинг</div>
+                            </div>
+                        </div>
+
+                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">⚽ Спортивные</h4>
+                        <div class="games-grid-improved">
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/5gS4kqmb/fifa25.jpg" alt="FIFA 25" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">FIFA 25</div>
+                                <div class="game-category">Спорт</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/j9YDddr9/nhl25.jpg" alt="NHL 25" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">NHL 25</div>
+                                <div class="game-category">Спорт</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/7xxLHn5B/nba2k25.jpg" alt="NBA 2K25" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">NBA 2K25</div>
+                                <div class="game-category">Спорт</div>
+                            </div>
+                        </div>
+
+                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🎯 Экшн/Приключения</h4>
+                        <div class="games-grid-improved">
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/5Q3MTZS/gta5.jpg" alt="GTA 5" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">GTA 5</div>
+                                <div class="game-category">Экшн</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/kVShdsJG/god-of-war.jpg" alt="God of War" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">God of War</div>
+                                <div class="game-category">Экшн</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/LhgrqRhr/spider-man.jpg" alt="Spider-Man" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Spider-Man</div>
+                                <div class="game-category">Экшн</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/cSLk8VGj/witcher3.jpg" alt="The Witcher 3" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">The Witcher 3</div>
+                                <div class="game-category">RPG</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/j9rFsXQx/horizon.jpg" alt="Horizon Zero Dawn" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Horizon Zero Dawn</div>
+                                <div class="game-category">Экшн</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/N2sM3cmT/uncharted4.jpg" alt="Uncharted 4" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Uncharted 4</div>
+                                <div class="game-category">Приключения</div>
+                            </div>
+                        </div>
+
+                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🎮 Другие игры</h4>
+                        <div class="games-grid-improved">
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/JfMP80N/mafia.jpg" alt="Mafia" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Mafia</div>
+                                <div class="game-category">Экшн</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/Q7DcNTYL/dying-light2.jpg" alt="Dying Light 2" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Dying Light 2</div>
+                                <div class="game-category">Экшн</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/Gf2kWtV7/spider-man-miles.jpg" alt="Spider-Man: Miles Morales" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Spider-Man: Miles Morales</div>
+                                <div class="game-category">Экшн</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/BH4zXkqM/watch-dogs2.jpg" alt="Watch Dogs 2" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Watch Dogs 2</div>
+                                <div class="game-category">Экшн</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/84sGNBZx/ratchet-clank.jpg" alt="Ratchet & Clank" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Ratchet & Clank</div>
+                                <div class="game-category">Экшн</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/gMjVK7cw/nfs-payback.jpg" alt="Need for Speed Payback" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Need for Speed Payback</div>
+                                <div class="game-category">Гонки</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/NMTMjmH/gran-turismo.jpg" alt="Gran Turismo Sport" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Gran Turismo Sport</div>
+                                <div class="game-category">Гонки</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/PGWjWp2L/driveclub.jpg" alt="Driveclub" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Driveclub</div>
+                                <div class="game-category">Гонки</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/b5Kf7W1N/resident-evil7.jpg" alt="Resident Evil 7" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Resident Evil 7</div>
+                                <div class="game-category">Хоррор</div>
+                            </div>
+                            
+                            <div class="game-card">
+                                <div class="game-icon">
+                                    <img src="https://i.ibb.co/NnQBKShX/deus-ex.jpg" alt="Deus Ex" onerror="handleImageError(this)">
+                                </div>
+                                <div class="game-title">Deus Ex</div>
+                                <div class="game-category">RPG</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reviews" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+                <div class="section-content">
+                    <h2>💬 Отзывы наших геймеров</h2>
+                    
+                    <div style="text-align: center; margin: 1.5rem 0; color: #d4b483; font-size: 1.1rem;">
+                        <p>Нас рекомендуют на Яндекс Картах</p>
+                        <div style="display: inline-flex; align-items: center; background: rgba(255, 215, 0, 0.15); padding: 0.8rem 1.5rem; border-radius: 25px; margin: 1rem 0; border: 2px solid #ffd700;">
+                            <span style="color: #ffd700; font-size: 1.5rem; margin-right: 0.8rem;">★★★★★</span>
+                            <span style="font-size: 1.5rem; font-weight: bold; color: #ffd700;">5.0</span>
+                        </div>
+                        <p>На основе оценок реальных посетителей</p>
+                    </div>
+
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <a href="https://yandex.ru/maps/10665/kolchugino/?ll=39.376976%2C56.297982&mode=poi&poi%5Bpoint%5D=39.376856%2C56.298019&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D178329103177&tab=reviews&z=20" 
+                           class="cta-button" target="_blank" style="background: linear-gradient(135deg, #ffd700, #ff8c00);">
+                            📖 Читать все отзывы на Яндекс Картах
                         </a>
+                    </div>
+
+                    <div style="text-align: center; color: #d4b483; font-size: 1rem;">
+                        <p>⭐ Все отзывы настоящие - оставлены реальными посетителями нашего клуба</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="social" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+                <div class="section-content">
+                    <h2>Связь с нами</h2>
+                    
+                    <div class="social-buttons">
+                        <a href="https://t.me/+IRDifvFhLG85MmYy" class="social-button social-telegram" target="_blank">
+                            <span class="social-icon">📱</span>
+                            <span>Telegram-чат для брони</span>
+                        </a>
+                        
+                        <a href="https://vk.com/kkk3363klg" class="social-button social-vk" target="_blank">
+                            <span class="social-icon">👥</span>
+                            <span>Группа ВКонтакте</span>
+                        </a>
+                        
+                        <a href="https://yandex.ru/maps/org/kolizey/178329103177/?ll=39.376949%2C56.298018&z=17" class="social-button social-map" target="_blank">
+                            <span class="social-icon">📍</span>
+                            <span>Яндекс.Карты</span>
+                        </a>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <p style="font-size: 1.1rem; color: #d4b483;">Следите за акциями и мероприятиями в наших соцсетях!</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contacts" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+                <div class="section-content">
+                    <h2>Вход на арену</h2>
+                    <div class="contact-info">
+                        <div class="address">📍 Владимирская область, г. Кольчугино, ул. Дружбы 7А</div>
+                        <a href="tel:+79995229450" class="phone">📞 8-999-522-94-50</a>
+                        <p>🕒 <strong>Время работы арены:</strong> Круглосуточно</p>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <a href="https://yandex.ru/maps/org/kolizey/178329103177/?ll=39.376949%2C56.298018&z=17" 
+                               target="_blank" 
+                               style="color: #ffd700; text-decoration: none; font-size: 1.1rem;">
+                                📍 Посмотреть на Яндекс.Картах
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1572,21 +1482,16 @@
         </footer>
     </div>
 
-    <!-- Кнопка "Наверх" -->
     <div class="back-to-top" title="Вернуться наверх">↑</div>
 
-    <!-- Модальные окна тарифов -->
-    <div id="dayTariffModal" class="modal">
+    <!-- Модальные окна с полноразмерным фоном -->
+    <div id="dayTariffModal" class="modal modal-with-bg">
+        <div class="modal-bg" style="background-image: url('https://i.ibb.co/KzDHrgwL/kolizei-bg.jpg')"></div>
         <div class="modal-content">
             <span class="close" onclick="closeModal('dayTariffModal')">&times;</span>
-            <h2 class="modal-title">⚔️ Дневные тарифы<br><span style="font-size: 1.4rem;">(14:00-02:00)</span></h2>
+            <h2 class="modal-title">☀️ Дневные тарифы</h2>
             
-            <div class="tariff-background">
-                <img src="https://i.ibb.co/r28563MC/day-tariff-bg.jpg" alt="Дневные тарифы">
-                <div class="tariff-overlay">ДНЕВНАЯ СЕССИЯ</div>
-            </div>
-            
-            <div class="time-info">Время: с 14:00 до 02:00</div>
+            <div class="time-info">Время действия: с 14:00 до 02:00</div>
             
             <div class="tariff-grid">
                 <div class="tariff-card">
@@ -1627,17 +1532,13 @@
         </div>
     </div>
 
-    <div id="nightTariffModal" class="modal">
+    <div id="nightTariffModal" class="modal modal-with-bg">
+        <div class="modal-bg" style="background-image: url('https://i.ibb.co/VctPH2CQ/schedule-bg.jpg')"></div>
         <div class="modal-content">
             <span class="close" onclick="closeModal('nightTariffModal')">&times;</span>
-            <h2 class="modal-title">🌙 Ночные тарифы<br><span style="font-size: 1.4rem;">(02:00-14:00)</span></h2>
+            <h2 class="modal-title">🌙 Ночные тарифы</h2>
             
-            <div class="tariff-background">
-                <img src="https://i.ibb.co/d0FvyxJ4/night-tariff-bg.jpg" alt="Ночные тарифы">
-                <div class="tariff-overlay">НОЧНАЯ СЕССИЯ</div>
-            </div>
-            
-            <div class="time-info">Время: с 02:00 до 14:00</div>
+            <div class="time-info">Время действия: с 02:00 до 14:00</div>
             
             <div class="tariff-grid">
                 <div class="tariff-card">
@@ -1707,7 +1608,6 @@
             }
         });
 
-        // Улучшенная плавная прокрутка с учетом фиксированного меню
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1751,13 +1651,11 @@
                 currentIndicator.textContent = '● Сейчас активно';
                 activeShift.appendChild(currentIndicator);
                 
-                // Обновить текст в зависимости от времени
                 const shiftInfo = document.createElement('div');
                 shiftInfo.style.cssText = 'color: #ff6b00; font-weight: bold; margin-top: 0.5rem; font-size: 0.9rem;';
                 shiftInfo.textContent = currentHour >= 2 && currentHour < 14 ? 
                     '🌙 Действуют ночные тарифы' : '☀️ Действуют дневные тарифы';
                 
-                // Удалить старую информацию если есть
                 const oldInfo = document.querySelector('.shift-info');
                 if (oldInfo) oldInfo.remove();
                 
@@ -1766,7 +1664,6 @@
             }
         }
 
-        // Функция для обработки ошибок изображений
         function handleImageError(img) {
             img.style.display = 'none';
             const gameName = img.alt;
@@ -1778,7 +1675,6 @@
             icon.style.justifyContent = 'center';
         }
 
-        // Функция для получения эмодзи для игры
         function getGameIcon(gameName) {
             const iconMap = {
                 'Dota 2': '🎮',
@@ -1820,7 +1716,6 @@
             return iconMap[gameName] || '🎮';
         }
 
-        // Функция для фиксированного меню
         function handleScroll() {
             const header = document.getElementById('mainHeader');
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -1831,7 +1726,6 @@
                 header.classList.remove('sticky');
             }
 
-            // Показ/скрытие кнопки "Наверх"
             const backToTop = document.querySelector('.back-to-top');
             if (scrollTop > 300) {
                 backToTop.style.display = 'flex';
@@ -1865,10 +1759,8 @@
             updateCurrentShift();
             setInterval(updateCurrentShift, 60000);
             
-            // Добавляем обработчик скролла для фиксированного меню и кнопки "Наверх"
             window.addEventListener('scroll', handleScroll);
 
-            // Обработчик для кнопки "Наверх"
             document.querySelector('.back-to-top').addEventListener('click', function() {
                 window.scrollTo({
                     top: 0,
@@ -1876,7 +1768,6 @@
                 });
             });
 
-            // Предварительная проверка изображений
             const images = document.querySelectorAll('.game-icon img');
             images.forEach(img => {
                 const tempImg = new Image();
