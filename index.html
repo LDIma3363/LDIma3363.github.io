@@ -244,14 +244,34 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            z-index: -1;
+            transition: transform 0.1s ease-out;
+            filter: brightness(0.5) contrast(1.1) saturate(1.2);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         .section-content {
             position: relative;
             z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
         }
 
         h2 {
@@ -759,8 +779,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #d4b483;
-            font-size: 2rem;
         }
 
         .game-icon img {
@@ -855,6 +873,7 @@
             .section {
                 padding: 2rem 0.8rem;
                 margin: 1.5rem 0;
+                min-height: 500px;
             }
             
             h2 {
@@ -1037,10 +1056,12 @@
         </nav>
 
         <div class="container">
-            <section id="about" class="section" style="background-image: url('https://i.ibb.co/KzDHrgwL/kolizei-bg.jpg')">
+            <!-- О нас -->
+            <section id="about" class="section">
+                <div class="section-bg" style="background-image: url('https://i.ibb.co/KzDHrgwL/kolizei-bg.jpg')"></div>
                 <div class="section-content">
                     <h2>Добро пожаловать на арену КОЛИЗЕЙ</h2>
-                    <p style="text-align: center; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="font-size: 1.1rem; line-height: 1.6;">
                         Где каждый бой - легенда, а каждый геймер - гладиатор цифровой эпохи! 
                         Величественная атмосфера древнего Колизея встречает современные технологии 
                         игровых ПК премиум-класса и новейшие PlayStation 5.
@@ -1058,11 +1079,13 @@
                 </div>
             </section>
 
-            <section id="schedule" class="section" style="background-image: url('https://i.ibb.co/VctPH2CQ/schedule-bg.jpg')">
+            <!-- Расписание -->
+            <section id="schedule" class="section">
+                <div class="section-bg" style="background-image: url('https://i.ibb.co/VctPH2CQ/schedule-bg.jpg')"></div>
                 <div class="section-content">
                     <h2>🕒 Расписание смен</h2>
                     
-                    <div style="text-align: center; margin: 1.5rem 0;">
+                    <div style="margin: 1.5rem 0;">
                         <div class="schedule-card">
                             <div class="time-slot active" id="nightShift">
                                 <span class="time">02:00 - 14:00</span>
@@ -1076,13 +1099,15 @@
                         </div>
                     </div>
 
-                    <div style="text-align: center; color: #d4b483; font-size: 1rem;">
+                    <div style="color: #d4b483; font-size: 1rem;">
                         <p>💡 <strong>Подсказка:</strong> Тарифы меняются в зависимости от времени суток</p>
                     </div>
                 </div>
             </section>
 
-            <section class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+            <!-- Наша арена -->
+            <section class="section">
+                <div class="section-bg" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')"></div>
                 <div class="section-content">
                     <h2>Наша арена</h2>
                     <div class="gallery">
@@ -1093,17 +1118,19 @@
                 </div>
             </section>
 
-            <section id="pc-games" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+            <!-- ПК игры -->
+            <section id="pc-games" class="section">
+                <div class="section-bg" style="background-image: url('https://i.ibb.co/KzDHrgwL/kolizei-bg.jpg')"></div>
                 <div class="section-content">
                     <h2>🖥️ Компьютерные игры</h2>
                     
                     <div class="games-showcase">
-                        <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">11 топовых игр для игровых ПК</h3>
+                        <h3 style="color: #d4b483; margin-bottom: 2rem;">11 топовых игр для игровых ПК</h3>
                         
                         <div class="games-grid-improved">
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/cn0sfft/dota2.jpg" alt="Dota 2" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/cn0sfft/dota2.jpg" alt="Dota 2">
                                 </div>
                                 <div class="game-title">Dota 2</div>
                                 <div class="game-category">MOBA</div>
@@ -1111,7 +1138,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/HLHNfXVv/cs2.jpg" alt="Counter-Strike 2" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/HLHNfXVv/cs2.jpg" alt="Counter-Strike 2">
                                 </div>
                                 <div class="game-title">Counter-Strike 2</div>
                                 <div class="game-category">Шутер</div>
@@ -1119,7 +1146,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/chXYnBcB/pubg.jpg" alt="PUBG" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/chXYnBcB/pubg.jpg" alt="PUBG">
                                 </div>
                                 <div class="game-title">PUBG</div>
                                 <div class="game-category">Батл-рояль</div>
@@ -1127,7 +1154,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/B5vwZRsd/warface.jpg" alt="Warface" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/B5vwZRsd/warface.jpg" alt="Warface">
                                 </div>
                                 <div class="game-title">Warface</div>
                                 <div class="game-category">Шутер</div>
@@ -1135,7 +1162,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/5Wc71q5Y/valorant.jpg" alt="Valorant" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/5Wc71q5Y/valorant.jpg" alt="Valorant">
                                 </div>
                                 <div class="game-title">Valorant</div>
                                 <div class="game-category">Тактический шутер</div>
@@ -1143,7 +1170,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/yFDCft4d/apex-legends.jpg" alt="Apex Legends" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/yFDCft4d/apex-legends.jpg" alt="Apex Legends">
                                 </div>
                                 <div class="game-title">Apex Legends</div>
                                 <div class="game-category">Батл-рояль</div>
@@ -1151,7 +1178,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/BV2JF2KZ/world-of-tanks.jpg" alt="World of Tanks" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/BV2JF2KZ/world-of-tanks.jpg" alt="World of Tanks">
                                 </div>
                                 <div class="game-title">World of Tanks</div>
                                 <div class="game-category">Танковый симулятор</div>
@@ -1159,7 +1186,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/mrmnFTFk/minecraft.jpg" alt="Minecraft" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/mrmnFTFk/minecraft.jpg" alt="Minecraft">
                                 </div>
                                 <div class="game-title">Minecraft</div>
                                 <div class="game-category">Песочница</div>
@@ -1167,7 +1194,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/7tt679m5/lineage2.jpg" alt="Lineage 2" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/7tt679m5/lineage2.jpg" alt="Lineage 2">
                                 </div>
                                 <div class="game-title">Lineage 2</div>
                                 <div class="game-category">MMORPG</div>
@@ -1175,7 +1202,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/xSYcB4r4/wow.jpg" alt="World of Warcraft" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/xSYcB4r4/wow.jpg" alt="World of Warcraft">
                                 </div>
                                 <div class="game-title">World of Warcraft</div>
                                 <div class="game-category">MMORPG</div>
@@ -1183,7 +1210,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/JRw571Hs/quake.jpg" alt="Quake" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/JRw571Hs/quake.jpg" alt="Quake">
                                 </div>
                                 <div class="game-title">Quake</div>
                                 <div class="game-category">Шутер</div>
@@ -1193,18 +1220,20 @@
                 </div>
             </section>
 
-            <section id="ps5-games" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+            <!-- PS5 игры -->
+            <section id="ps5-games" class="section">
+                <div class="section-bg" style="background-image: url('https://i.ibb.co/VctPH2CQ/schedule-bg.jpg')"></div>
                 <div class="section-content">
                     <h2>🎮 Игры для PlayStation 5</h2>
                     
                     <div class="games-showcase">
-                        <h3 style="text-align: center; color: #d4b483; margin-bottom: 2rem;">26 эксклюзивных игр для PS5</h3>
+                        <h3 style="color: #d4b483; margin-bottom: 2rem;">26 эксклюзивных игр для PS5</h3>
                         
-                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🥊 Файтинги</h4>
+                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; font-size: 1.3rem;">🥊 Файтинги</h4>
                         <div class="games-grid-improved">
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/Zp4PwXJ1/mk1.jpg" alt="Mortal Kombat 1" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/Zp4PwXJ1/mk1.jpg" alt="Mortal Kombat 1">
                                 </div>
                                 <div class="game-title">Mortal Kombat 1</div>
                                 <div class="game-category">Файтинг</div>
@@ -1212,7 +1241,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/zts51hn/mk11.jpg" alt="Mortal Kombat 11" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/zts51hn/mk11.jpg" alt="Mortal Kombat 11">
                                 </div>
                                 <div class="game-title">Mortal Kombat 11</div>
                                 <div class="game-category">Файтинг</div>
@@ -1220,7 +1249,7 @@
 
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/1GhNMH6V/mkxl.jpg" alt="Mortal Kombat XL" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/1GhNMH6V/mkxl.jpg" alt="Mortal Kombat XL">
                                 </div>
                                 <div class="game-title">Mortal Kombat XL</div>
                                 <div class="game-category">Файтинг</div>
@@ -1228,18 +1257,18 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/KjZZTV7b/ufc5.jpg" alt="UFC 5" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/KjZZTV7b/ufc5.jpg" alt="UFC 5">
                                 </div>
                                 <div class="game-title">UFC 5</div>
                                 <div class="game-category">Файтинг</div>
                             </div>
                         </div>
 
-                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">⚽ Спортивные</h4>
+                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; font-size: 1.3rem;">⚽ Спортивные</h4>
                         <div class="games-grid-improved">
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/5gS4kqmb/fifa25.jpg" alt="FIFA 25" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/5gS4kqmb/fifa25.jpg" alt="FIFA 25">
                                 </div>
                                 <div class="game-title">FIFA 25</div>
                                 <div class="game-category">Спорт</div>
@@ -1247,7 +1276,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/j9YDddr9/nhl25.jpg" alt="NHL 25" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/j9YDddr9/nhl25.jpg" alt="NHL 25">
                                 </div>
                                 <div class="game-title">NHL 25</div>
                                 <div class="game-category">Спорт</div>
@@ -1255,18 +1284,18 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/7xxLHn5B/nba2k25.jpg" alt="NBA 2K25" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/7xxLHn5B/nba2k25.jpg" alt="NBA 2K25">
                                 </div>
                                 <div class="game-title">NBA 2K25</div>
                                 <div class="game-category">Спорт</div>
                             </div>
                         </div>
 
-                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🎯 Экшн/Приключения</h4>
+                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; font-size: 1.3rem;">🎯 Экшн/Приключения</h4>
                         <div class="games-grid-improved">
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/5Q3MTZS/gta5.jpg" alt="GTA 5" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/5Q3MTZS/gta5.jpg" alt="GTA 5">
                                 </div>
                                 <div class="game-title">GTA 5</div>
                                 <div class="game-category">Экшн</div>
@@ -1274,7 +1303,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/kVShdsJG/god-of-war.jpg" alt="God of War" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/kVShdsJG/god-of-war.jpg" alt="God of War">
                                 </div>
                                 <div class="game-title">God of War</div>
                                 <div class="game-category">Экшн</div>
@@ -1282,7 +1311,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/LhgrqRhr/spider-man.jpg" alt="Spider-Man" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/LhgrqRhr/spider-man.jpg" alt="Spider-Man">
                                 </div>
                                 <div class="game-title">Spider-Man</div>
                                 <div class="game-category">Экшн</div>
@@ -1290,7 +1319,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/cSLk8VGj/witcher3.jpg" alt="The Witcher 3" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/cSLk8VGj/witcher3.jpg" alt="The Witcher 3">
                                 </div>
                                 <div class="game-title">The Witcher 3</div>
                                 <div class="game-category">RPG</div>
@@ -1298,7 +1327,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/j9rFsXQx/horizon.jpg" alt="Horizon Zero Dawn" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/j9rFsXQx/horizon.jpg" alt="Horizon Zero Dawn">
                                 </div>
                                 <div class="game-title">Horizon Zero Dawn</div>
                                 <div class="game-category">Экшн</div>
@@ -1306,18 +1335,18 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/N2sM3cmT/uncharted4.jpg" alt="Uncharted 4" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/N2sM3cmT/uncharted4.jpg" alt="Uncharted 4">
                                 </div>
                                 <div class="game-title">Uncharted 4</div>
                                 <div class="game-category">Приключения</div>
                             </div>
                         </div>
 
-                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; text-align: center; font-size: 1.3rem;">🎮 Другие игры</h4>
+                        <h4 style="color: #ffd700; margin: 2rem 0 1rem; font-size: 1.3rem;">🎮 Другие игры</h4>
                         <div class="games-grid-improved">
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/JfMP80N/mafia.jpg" alt="Mafia" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/JfMP80N/mafia.jpg" alt="Mafia">
                                 </div>
                                 <div class="game-title">Mafia</div>
                                 <div class="game-category">Экшн</div>
@@ -1325,7 +1354,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/Q7DcNTYL/dying-light2.jpg" alt="Dying Light 2" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/Q7DcNTYL/dying-light2.jpg" alt="Dying Light 2">
                                 </div>
                                 <div class="game-title">Dying Light 2</div>
                                 <div class="game-category">Экшн</div>
@@ -1333,7 +1362,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/Gf2kWtV7/spider-man-miles.jpg" alt="Spider-Man: Miles Morales" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/Gf2kWtV7/spider-man-miles.jpg" alt="Spider-Man: Miles Morales">
                                 </div>
                                 <div class="game-title">Spider-Man: Miles Morales</div>
                                 <div class="game-category">Экшн</div>
@@ -1341,7 +1370,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/BH4zXkqM/watch-dogs2.jpg" alt="Watch Dogs 2" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/BH4zXkqM/watch-dogs2.jpg" alt="Watch Dogs 2">
                                 </div>
                                 <div class="game-title">Watch Dogs 2</div>
                                 <div class="game-category">Экшн</div>
@@ -1349,7 +1378,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/84sGNBZx/ratchet-clank.jpg" alt="Ratchet & Clank" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/84sGNBZx/ratchet-clank.jpg" alt="Ratchet & Clank">
                                 </div>
                                 <div class="game-title">Ratchet & Clank</div>
                                 <div class="game-category">Экшн</div>
@@ -1357,7 +1386,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/gMjVK7cw/nfs-payback.jpg" alt="Need for Speed Payback" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/gMjVK7cw/nfs-payback.jpg" alt="Need for Speed Payback">
                                 </div>
                                 <div class="game-title">Need for Speed Payback</div>
                                 <div class="game-category">Гонки</div>
@@ -1365,7 +1394,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/NMTMjmH/gran-turismo.jpg" alt="Gran Turismo Sport" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/NMTMjmH/gran-turismo.jpg" alt="Gran Turismo Sport">
                                 </div>
                                 <div class="game-title">Gran Turismo Sport</div>
                                 <div class="game-category">Гонки</div>
@@ -1373,7 +1402,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/PGWjWp2L/driveclub.jpg" alt="Driveclub" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/PGWjWp2L/driveclub.jpg" alt="Driveclub">
                                 </div>
                                 <div class="game-title">Driveclub</div>
                                 <div class="game-category">Гонки</div>
@@ -1381,7 +1410,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/b5Kf7W1N/resident-evil7.jpg" alt="Resident Evil 7" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/b5Kf7W1N/resident-evil7.jpg" alt="Resident Evil 7">
                                 </div>
                                 <div class="game-title">Resident Evil 7</div>
                                 <div class="game-category">Хоррор</div>
@@ -1389,7 +1418,7 @@
                             
                             <div class="game-card">
                                 <div class="game-icon">
-                                    <img src="https://i.ibb.co/NnQBKShX/deus-ex.jpg" alt="Deus Ex" onerror="handleImageError(this)">
+                                    <img src="https://i.ibb.co/NnQBKShX/deus-ex.jpg" alt="Deus Ex">
                                 </div>
                                 <div class="game-title">Deus Ex</div>
                                 <div class="game-category">RPG</div>
@@ -1399,11 +1428,13 @@
                 </div>
             </section>
 
-            <section id="reviews" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+            <!-- Отзывы -->
+            <section id="reviews" class="section">
+                <div class="section-bg" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')"></div>
                 <div class="section-content">
                     <h2>💬 Отзывы наших геймеров</h2>
                     
-                    <div style="text-align: center; margin: 1.5rem 0; color: #d4b483; font-size: 1.1rem;">
+                    <div style="margin: 1.5rem 0; color: #d4b483; font-size: 1.1rem;">
                         <p>Нас рекомендуют на Яндекс Картах</p>
                         <div style="display: inline-flex; align-items: center; background: rgba(255, 215, 0, 0.15); padding: 0.8rem 1.5rem; border-radius: 25px; margin: 1rem 0; border: 2px solid #ffd700;">
                             <span style="color: #ffd700; font-size: 1.5rem; margin-right: 0.8rem;">★★★★★</span>
@@ -1412,20 +1443,22 @@
                         <p>На основе оценок реальных посетителей</p>
                     </div>
 
-                    <div style="text-align: center; margin: 2rem 0;">
+                    <div style="margin: 2rem 0;">
                         <a href="https://yandex.ru/maps/10665/kolchugino/?ll=39.376976%2C56.297982&mode=poi&poi%5Bpoint%5D=39.376856%2C56.298019&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D178329103177&tab=reviews&z=20" 
                            class="cta-button" target="_blank" style="background: linear-gradient(135deg, #ffd700, #ff8c00);">
                             📖 Читать все отзывы на Яндекс Картах
                         </a>
                     </div>
 
-                    <div style="text-align: center; color: #d4b483; font-size: 1rem;">
+                    <div style="color: #d4b483; font-size: 1rem;">
                         <p>⭐ Все отзывы настоящие - оставлены реальными посетителями нашего клуба</p>
                     </div>
                 </div>
             </section>
 
-            <section id="social" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+            <!-- Социальные сети -->
+            <section id="social" class="section">
+                <div class="section-bg" style="background-image: url('https://i.ibb.co/KzDHrgwL/kolizei-bg.jpg')"></div>
                 <div class="section-content">
                     <h2>Связь с нами</h2>
                     
@@ -1452,7 +1485,9 @@
                 </div>
             </section>
 
-            <section id="contacts" class="section" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')">
+            <!-- Контакты -->
+            <section id="contacts" class="section">
+                <div class="section-bg" style="background-image: url('https://i.ibb.co/VctPH2CQ/schedule-bg.jpg')"></div>
                 <div class="section-content">
                     <h2>Вход на арену</h2>
                     <div class="contact-info">
@@ -1484,9 +1519,9 @@
 
     <div class="back-to-top" title="Вернуться наверх">↑</div>
 
-    <!-- Модальные окна с полноразмерным фоном -->
+    <!-- Модальные окна -->
     <div id="dayTariffModal" class="modal modal-with-bg">
-        <div class="modal-bg" style="background-image: url('https://i.ibb.co/KzDHrgwL/kolizei-bg.jpg')"></div>
+        <div class="modal-bg" style="background-image: url('https://i.ibb.co/VctPH2CQ/schedule-bg.jpg')"></div>
         <div class="modal-content">
             <span class="close" onclick="closeModal('dayTariffModal')">&times;</span>
             <h2 class="modal-title">☀️ Дневные тарифы</h2>
@@ -1533,7 +1568,7 @@
     </div>
 
     <div id="nightTariffModal" class="modal modal-with-bg">
-        <div class="modal-bg" style="background-image: url('https://i.ibb.co/VctPH2CQ/schedule-bg.jpg')"></div>
+        <div class="modal-bg" style="background-image: url('https://i.ibb.co/nqgBT4NP/arena-bg.jpg')"></div>
         <div class="modal-content">
             <span class="close" onclick="closeModal('nightTariffModal')">&times;</span>
             <h2 class="modal-title">🌙 Ночные тарифы</h2>
@@ -1596,17 +1631,25 @@
             });
         }
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => {
-                    if (modal.style.display === 'block') {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            }
-        });
+        // Параллакс-эффект для фонов
+        function updateParallax() {
+            const sections = document.querySelectorAll('.section');
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach((section, index) => {
+                const bg = section.querySelector('.section-bg');
+                if (bg) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const scrollProgress = (scrollY - sectionTop + window.innerHeight) / (sectionHeight + window.innerHeight);
+                    
+                    // Параллакс-эффект: фон движется медленнее чем контент
+                    const parallaxSpeed = 0.3;
+                    const bgOffset = (scrollY - sectionTop) * parallaxSpeed;
+                    bg.style.transform = `translateY(${bgOffset}px)`;
+                }
+            });
+        }
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1664,58 +1707,6 @@
             }
         }
 
-        function handleImageError(img) {
-            img.style.display = 'none';
-            const gameName = img.alt;
-            const icon = img.parentElement;
-            icon.innerHTML = getGameIcon(gameName);
-            icon.style.fontSize = '2.5rem';
-            icon.style.display = 'flex';
-            icon.style.alignItems = 'center';
-            icon.style.justifyContent = 'center';
-        }
-
-        function getGameIcon(gameName) {
-            const iconMap = {
-                'Dota 2': '🎮',
-                'Counter-Strike 2': '🔫',
-                'PUBG': '🏝️',
-                'Warface': '🎯',
-                'Valorant': '🎭',
-                'Apex Legends': '🚀',
-                'World of Tanks': '⚙️',
-                'Minecraft': '🧱',
-                'Lineage 2': '⚔️',
-                'World of Warcraft': '🐉',
-                'Quake': '💀',
-                'Mortal Kombat 1': '🥋',
-                'Mortal Kombat 11': '🥊',
-                'Mortal Kombat XL': '🥊',
-                'UFC 5': '🥊',
-                'FIFA 25': '⚽',
-                'NHL 25': '🏒',
-                'NBA 2K25': '🏀',
-                'GTA 5': '🚗',
-                'God of War': '⚔️',
-                'Spider-Man': '🕷️',
-                'The Witcher 3': '🧙',
-                'Horizon Zero Dawn': '🏹',
-                'Uncharted 4': '🗺️',
-                'Mafia': '🧳',
-                'Dying Light 2': '🧟',
-                'Spider-Man: Miles Morales': '🕸️',
-                'Watch Dogs 2': '💻',
-                'Ratchet & Clank': '🔧',
-                'Need for Speed Payback': '🏎️',
-                'Gran Turismo Sport': '🏁',
-                'Driveclub': '🚙',
-                'Resident Evil 7': '🧟',
-                'Deus Ex': '🔬'
-            };
-            
-            return iconMap[gameName] || '🎮';
-        }
-
         function handleScroll() {
             const header = document.getElementById('mainHeader');
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -1732,6 +1723,8 @@
             } else {
                 backToTop.style.display = 'none';
             }
+
+            updateParallax();
         }
 
         const observerOptions = {
@@ -1760,6 +1753,7 @@
             setInterval(updateCurrentShift, 60000);
             
             window.addEventListener('scroll', handleScroll);
+            updateParallax();
 
             document.querySelector('.back-to-top').addEventListener('click', function() {
                 window.scrollTo({
@@ -1768,13 +1762,16 @@
                 });
             });
 
-            const images = document.querySelectorAll('.game-icon img');
-            images.forEach(img => {
-                const tempImg = new Image();
-                tempImg.src = img.src;
-                tempImg.onerror = function() {
-                    img.dispatchEvent(new Event('error'));
-                };
+            // Предзагрузка изображений для лучшего качества
+            const imageUrls = [
+                'https://i.ibb.co/KzDHrgwL/kolizei-bg.jpg',
+                'https://i.ibb.co/VctPH2CQ/schedule-bg.jpg',
+                'https://i.ibb.co/nqgBT4NP/arena-bg.jpg'
+            ];
+            
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
             });
         });
     </script>
